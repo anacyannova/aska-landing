@@ -1,0 +1,676 @@
+@import "variables";
+@import 'mixins';
+@import "../bootstrap-5.3.8/scss/bootstrap";
+@import 'generales';
+
+/* === RESET === */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: $font-heading;
+    background: $color-bg;
+    color: $color-dark;
+    overflow-x: hidden;
+}
+
+section {
+    padding: $section-space 0;
+}
+
+section[id],
+header[id] {
+    scroll-margin-top: 90px;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* ==========================
+   CONTAINER
+========================== */
+
+.container {
+    max-width: $container-max;
+}
+
+
+/* ==========================
+   TITULOS y textos
+========================== */
+
+h1{
+    font-size:44px;
+    font-weight:700;
+}
+
+h2{
+    font-size:40px;
+    font-weight:500;
+}
+
+h3{
+    font-size:30px;
+    font-weight:300;
+}
+
+h4{
+    font-size:22px;
+    font-weight:500;
+}
+
+p.large{
+    font-size:18px;
+}
+
+p{
+    font-size:16px;
+}
+
+.small-text{
+    font-size:14px;
+}
+
+span{
+    font-size:12px;
+    font-weight:500;
+}
+
+
+/* ==========================
+   NAVBAR
+========================== */
+
+.navbar {
+    padding: 25px 0;
+    background: transparent;
+    transition: $transition;
+
+    // estado al hacer scroll (fuera del hero)
+    &.scrolled {
+        padding: 14px 0;
+        background: $color-bg;
+        box-shadow: 0 2px 16px rgba(0, 0, 0, .06);
+
+        .navbar-brand,
+        .nav-link {
+            color: $color-dark;
+        }
+    }
+}
+
+.navbar-brand {
+    color: white;
+    font-weight: 700;
+    letter-spacing: 2px;
+    transition: $transition;
+}
+
+.nav-link {
+    color: white;
+    font-size: .9rem;
+    transition: $transition;
+}
+
+.nav-link:hover {
+    color: white;
+    opacity: .7;
+}
+
+.navbar .btn {
+    border-radius: 0;
+}
+
+
+/* === HERO === */
+
+.hero {
+    min-height: 100vh;
+    background: $color-dark url('../img/banner.png') center / cover no-repeat;
+    color: white;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(0, 0, 0, .3) 0%, rgba(0, 0, 0, .65) 100%);
+        z-index: 0;
+    }
+
+    .container {
+        position: relative;
+        z-index: 1;
+    }
+}
+
+.hero .row {
+    min-height: 100vh;
+}
+
+.hero h1 {
+    text-transform: uppercase;
+    max-width: 350px;
+}
+
+// tarjeta tipo "packaging" rotada, reemplaza al box de vidrio anterior
+.hero-logo-card {
+    width: 320px;
+    padding: 40px 32px 28px;
+    margin: auto;
+    text-align: left;
+
+    background: #0c0c10;
+    border: 1px solid rgba(255, 255, 255, .08);
+    box-shadow: 0 40px 90px rgba(0, 0, 0, .55);
+    transform: rotate(-6deg);
+
+    h2 {
+        font-size: 3.2rem;
+        font-weight: 700;
+        margin-bottom: 0;
+        letter-spacing: 1px;
+    }
+
+    .hero-logo-sub {
+        font-family: $font-body;
+        font-size: 1.6rem;
+        font-weight: 300;
+        font-style: italic;
+        opacity: .85;
+        margin-bottom: 18px;
+    }
+
+    .hero-logo-caption {
+        display: block;
+        font-family: $font-body;
+        font-size: .8rem;
+        opacity: .55;
+        letter-spacing: .5px;
+    }
+}
+
+.scroll-top-btn {
+    position: absolute;
+    right: 32px;
+    bottom: 32px;
+    z-index: 2;
+
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .3);
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: $transition;
+
+    &:hover {
+        background: rgba(255, 255, 255, .2);
+    }
+}
+
+
+/* ==========================
+   NOSOTROS
+========================== */
+
+#nosotros {
+
+    background: $color-bg;
+}
+
+#nosotros h2 {
+
+    margin-bottom: 30px;
+}
+
+#nosotros .lead {
+
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+// placeholder de la pieza gráfica con la "K". Reemplazar por imagen real.
+.logo-mark-box {
+    height: 450px;
+    position: relative;
+    overflow: hidden;
+
+    background: $color-dark;
+    color: $color-white;
+
+    .logo-mark-word {
+        position: absolute;
+        left: 28px;
+        top: 50%;
+        transform: translateY(-50%) rotate(-90deg);
+        transform-origin: left center;
+
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 3px;
+        white-space: nowrap;
+    }
+
+    .logo-mark-k {
+        position: absolute;
+        right: -20px;
+        bottom: -60px;
+
+        font-size: 15rem;
+        font-weight: 700;
+        line-height: 1;
+        color: rgba(255, 255, 255, .12);
+    }
+}
+
+
+/* ==========================
+   PROCESO (hover para expandir)
+========================== */
+
+.procesos-track {
+    display: flex;
+    gap: 12px;
+    min-height: 220px;
+}
+
+.procesos-card {
+    flex: 1;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+
+    background: $color-lightblue;
+    color: $color-dark;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+
+    transition: flex .4s ease-in-out, background .3s ease, color .3s ease;
+
+    &-label {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+
+        font-family: $font-body;
+        font-weight: 500;
+        font-size: .85rem;
+        letter-spacing: 1px;
+        white-space: nowrap;
+    }
+
+    &-content {
+        display: none;
+        width: 100%;
+
+        h4 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+
+        p {
+            font-family: $font-body;
+            font-size: .95rem;
+            line-height: 1.6;
+            opacity: .85;
+            margin: 0;
+        }
+    }
+
+    &.active {
+        flex: 2.6;
+        background: $color-dark;
+        color: $color-white;
+
+        align-items: center;
+        justify-content: flex-start;
+        text-align: left;
+
+        .procesos-card-label {
+            display: none;
+        }
+
+        .procesos-card-content {
+            display: block;
+        }
+    }
+}
+
+
+/* ==========================
+   PROYECTO DESTACADO
+========================== */
+
+.proyecto-destacado {
+    background: black;
+    color: white;
+    position: relative;
+
+    // línea vertical roja del borde izquierdo
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(180deg, transparent, $color-accent, transparent);
+    }
+}
+
+.proyecto-nav {
+    display: flex;
+    gap: 12px;
+}
+
+.carousel-arrow {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+
+    border: 1px solid rgba(255, 255, 255, .3);
+    background: transparent;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: $transition;
+
+    &:hover {
+        background: rgba(255, 255, 255, .12);
+    }
+}
+
+.proyecto-track {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.project-image {
+    aspect-ratio: 1 / 1;
+    background: #d9d9d9;
+
+    flex: 0 0 calc(25% - 18px);
+    scroll-snap-align: start;
+
+    @media (max-width: 767px) {
+        flex: 0 0 70%;
+    }
+}
+
+.proyecto-progress {
+    height: 2px;
+    background: rgba(255, 255, 255, .15);
+    position: relative;
+}
+
+.proyecto-progress-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 25%;
+    background: white;
+    transition: width .2s ease;
+}
+
+
+/* ==========================
+   SERVICIOS
+========================== */
+
+.servicios-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    border: 1px solid $color-gray-200;
+
+    @media (max-width: 767px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.servicios-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-right: 1px solid $color-gray-200;
+
+    @media (max-width: 767px) {
+        border-right: none;
+        border-bottom: 1px solid $color-gray-200;
+    }
+}
+
+.servicios-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px;
+    cursor: pointer;
+
+    font-family: $font-body;
+    border-bottom: 1px solid $color-gray-200;
+    transition: $transition;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    .servicios-item-number {
+        font-size: .8rem;
+        opacity: .55;
+    }
+
+    .servicios-item-name {
+        flex: 1;
+        font-weight: 500;
+    }
+
+    .servicios-item-arrow {
+        opacity: .4;
+        transition: $transition;
+    }
+
+    &:hover:not(.active) {
+        background: $color-gray-100;
+    }
+
+    &.active {
+        background: $color-accent;
+        color: $color-white;
+
+        .servicios-item-number,
+        .servicios-item-arrow {
+            opacity: 1;
+        }
+    }
+}
+
+.servicios-panel {
+    padding: 32px;
+
+    &-label {
+        display: block;
+        margin-bottom: 16px;
+
+        font-family: $font-body;
+        font-size: .75rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        opacity: .55;
+    }
+
+    &-title {
+        font-size: 1.7rem;
+        margin-bottom: 16px;
+    }
+
+    &-desc {
+        font-family: $font-body;
+        line-height: 1.6;
+        margin-bottom: 24px;
+    }
+}
+
+.btn-outline-panel {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    border: 1px solid $color-accent;
+    color: $color-accent;
+    border-radius: 0;
+    padding: 10px 24px;
+    font-size: .85rem;
+
+    transition: $transition;
+
+    &:hover {
+        background: $color-accent;
+        color: white;
+    }
+}
+
+
+/* ==========================
+   EQUIPO
+========================== */
+
+.equipo-section {
+
+    background: #080808;
+    color: white;
+}
+
+.team-image {
+
+    aspect-ratio: 1 / 1;
+    background: $color-white;
+}
+
+.team-card h5 {
+
+    margin-top: 20px;
+}
+
+
+/* ==========================
+   CONTACTO
+========================== */
+
+.contacto-info-list {
+
+    li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 22px;
+        font-size: .95rem;
+
+        i {
+            font-size: 1.1rem;
+        }
+    }
+}
+
+.contacto-form-card {
+    background: $color-dark;
+    color: $color-white;
+    padding: 48px 40px;
+
+    .form-label {
+        display: block;
+        font-family: $font-body;
+        font-size: .7rem;
+        letter-spacing: 1px;
+        opacity: .55;
+        margin-bottom: 6px;
+    }
+
+    .btn-dark {
+        background: $color-white;
+        color: $color-dark;
+        border: none;
+        border-radius: 0;
+        padding: 12px 30px;
+        transition: $transition;
+
+        &:hover {
+            background: $color-gray-200;
+        }
+    }
+}
+
+.form-control,
+.form-select-custom {
+
+    border: none;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0;
+
+    padding: 12px 0;
+
+    background: transparent;
+    color: $color-dark;
+}
+
+.form-control:focus,
+.form-select-custom:focus {
+
+    box-shadow: none;
+    border-color: black;
+}
+
+// overrides dentro de la tarjeta oscura de contacto
+.contacto-form-card {
+
+    .form-control,
+    .form-select-custom {
+        color: $color-white;
+        border-bottom-color: rgba(255, 255, 255, .25);
+
+        &::placeholder {
+            color: rgba(255, 255, 255, .4);
+        }
+
+        &:focus {
+            border-color: $color-white;
+        }
+    }
+
+    .form-select-custom option {
+        color: $color-dark;
+    }
+}
+
+textarea.form-control {
+    resize: none;
+}
