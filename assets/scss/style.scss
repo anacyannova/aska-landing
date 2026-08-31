@@ -5,11 +5,6 @@
 
 /* === RESET === */
 
-*{
-    margin: 0 auto;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 html {
     scroll-behavior: smooth;
@@ -48,7 +43,13 @@ a {
 .container {
     max-width: $container-max;
 }
-
+.container {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 90px;
+    padding-right: 90px;
+}
 
 
 
@@ -412,11 +413,13 @@ a {
 /* ==========================
    SERVICIOS
 ========================== */
-
+#servicios{
+    margin: 150px 0;
+}
 .servicios-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1.4fr;
-    border: 1px solid $color-gray-200;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
 
     @media (max-width: 767px) {
         grid-template-columns: 1fr;
@@ -424,10 +427,17 @@ a {
 }
 
 .servicios-list {
-    list-style: none;
     margin: 0;
     padding: 0;
-    border-right: 1px solid $color-gray-200;
+    max-width: 600px;
+    border: 1px solid $color-gray-200;
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        
+    }
 
     @media (max-width: 767px) {
         border-right: none;
@@ -439,11 +449,11 @@ a {
     display: flex;
     align-items: center;
     gap: 16px;
-    padding: 18px 20px;
+    padding: 30px 40px;
     cursor: pointer;
 
     font-family: $font-body;
-    font-size: 1.25rem;
+
     border-bottom: 1px solid $color-gray-200;
     transition: $transition;
 
@@ -459,7 +469,9 @@ a {
 
     .servicios-item-name {
         flex: 1;
-        font-weight: 500;
+        font-weight: 400;
+        font-family: $font-body;
+        font-size: 1.125rem;
     }
 
     .servicios-item-arrow {
@@ -483,12 +495,12 @@ a {
 }
 
 .servicios-panel {
+    min-height: 300px;
     padding: 32px;
 
     &-label {
         display: block;
         margin-bottom: 16px;
-
         font-family: $font-body;
         font-size: 0.75rem;
         letter-spacing: 1px;
@@ -508,24 +520,8 @@ a {
         line-height: 1.6;
         margin-bottom: 24px;
     }
-}
-
-.btn-outline-panel {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-
-    border: 1px solid $color-accent;
-    color: $color-accent;
-    border-radius: 0;
-    padding: 10px 24px;
-    font-size: .85rem;
-
-    transition: $transition;
-
-    &:hover {
-        background: $color-accent;
-        color: white;
+    .btn-outline-panel{
+        @include btn-contacto;
     }
 }
 

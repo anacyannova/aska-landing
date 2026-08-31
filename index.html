@@ -21,7 +21,7 @@
     -->
 
     <!-- Estilos -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/scss/style.css">
 </head>
 
 <body>
@@ -244,87 +244,98 @@
     <!-- ========================= -->
     <!-- SERVICIOS -->
     <!-- ========================= -->
+<section id="servicios" class="py-5">
 
-    <section id="servicios" class="py-5">
+    <div class="container">
+        <!-- TÍTULO Y DESCRIPCIÓN -->
+        <div class="row ">
+            <h2>CONOCE NUESTROS SERVICIOS</h2>
+            <div class="col-lg-8 mt-4" >
+                <p class="large">
+                    Conoce nuestras áreas de trabajo y descubre todo lo que podemos hacer por tu proyecto, desde el diseño y desarrollo hasta la optimización de productos y experiencias digitales.
+                </p>
+            </div>
 
-        <div class="container">
+        </div>
 
-            <div class="row g-5">
+        <!-- SERVICIOS -->
+        <div class="row mt-4">
 
-                <div class="col-lg-5">
+            <div class="col-lg-12">
 
-                    <h2>CONOCE NUESTROS SERVICIOS</h2>
+                <div class="servicios-wrapper">
 
-                    <p>
-                        Diseño, desarrollo y optimización
-                        de experiencias digitales.
-                    </p>
+                    <!-- LISTA -->
+                    <ul class="servicios-list" id="serviciosList">
 
-                </div>
+                        <li class="servicios-item active"
+                            data-index="0"
+                            data-title="Diseño digital"
+                            data-desc="Haz que tu sitio sea fácil de entender y agradable de usar. Diseñamos experiencias digitales que organizan la información, facilitan la navegación y conectan las necesidades de tus usuarios con los objetivos de tu negocio.">
 
-                <div class="col-lg-7">
+                            <span class="servicios-item-number">01</span>
+                            <span class="servicios-item-name">Diseño digital</span>
+                            <i class="bi bi-arrow-right servicios-item-arrow"></i>
 
-                    <div class="servicios-wrapper">
+                        </li>
 
-                        <ul class="servicios-list" id="serviciosList">
 
-                            <li class="servicios-item active"
-                                data-index="0"
-                                data-title="Diseño digital"
-                                data-desc="Haz que tu sitio sea fácil de entender y agradable de usar. Diseñamos experiencias digitales que organizan la información, facilitan la navegación y conectan las necesidades de tus usuarios con los objetivos de tu negocio.">
-                                <span class="servicios-item-number">01</span>
-                                <span class="servicios-item-name">Diseño digital</span>
-                                <i class="bi bi-arrow-right servicios-item-arrow"></i>
-                            </li>
+                        <li class="servicios-item"
+                            data-index="1"
+                            data-title="Sitios web y tiendas"
+                            data-desc="Desarrollamos sitios y tiendas online a tu medida, usando WordPress, ecommerce y landing pages que convierten visitas en resultados.">
 
-                            <li class="servicios-item"
-                                data-index="1"
-                                data-title="Sitios web y tiendas"
-                                data-desc="Desarrollamos sitios y tiendas online a tu medida, usando WordPress, ecommerce y landing pages que convierten visitas en resultados.">
-                                <span class="servicios-item-number">02</span>
-                                <span class="servicios-item-name">Sitios web y tiendas</span>
-                                <i class="bi bi-arrow-right servicios-item-arrow"></i>
-                            </li>
+                            <span class="servicios-item-number">02</span>
+                            <span class="servicios-item-name">Sitios web y tiendas</span>
+                            <i class="bi bi-arrow-right servicios-item-arrow"></i>
 
-                            <li class="servicios-item"
-                                data-index="2"
-                                data-title="Plataformas a medida"
-                                data-desc="Creamos sistemas y plataformas personalizadas que se adaptan a los procesos y necesidades específicas de tu empresa.">
-                                <span class="servicios-item-number">03</span>
-                                <span class="servicios-item-name">Plataformas a medida</span>
-                                <i class="bi bi-arrow-right servicios-item-arrow"></i>
-                            </li>
+                        </li>
 
-                            <li class="servicios-item"
-                                data-index="3"
-                                data-title="Optimización web"
-                                data-desc="Mejoramos el rendimiento, la velocidad de carga y el posicionamiento de tu sitio para que llegue a más personas.">
-                                <span class="servicios-item-number">04</span>
-                                <span class="servicios-item-name">Optimización web</span>
-                                <i class="bi bi-arrow-right servicios-item-arrow"></i>
-                            </li>
 
-                        </ul>
+                        <li class="servicios-item"
+                            data-index="2"
+                            data-title="Plataformas a medida"
+                            data-desc="Creamos sistemas y plataformas personalizadas que se adaptan a los procesos y necesidades específicas de tu empresa.">
 
-                        <div class="servicios-panel">
+                            <span class="servicios-item-number">03</span>
+                            <span class="servicios-item-name">Plataformas a medida</span>
+                            <i class="bi bi-arrow-right servicios-item-arrow"></i>
 
-                            <span class="servicios-panel-label">
-                                SERVICIOS <span id="servicioActualNum">01</span> DE 04
-                            </span>
+                        </li>
 
-                            <h3 class="servicios-panel-title" id="servicioTitulo">
-                                Diseño digital
-                            </h3>
 
-                            <p class="servicios-panel-desc" id="servicioDesc">
-                                Haz que tu sitio sea fácil de entender y agradable de usar. Diseñamos experiencias digitales que organizan la información, facilitan la navegación y conectan las necesidades de tus usuarios con los objetivos de tu negocio.
-                            </p>
+                        <li class="servicios-item"
+                            data-index="3"
+                            data-title="Optimización web"
+                            data-desc="Mejoramos el rendimiento, la velocidad de carga y el posicionamiento de tu sitio para que llegue a más personas.">
 
-                            <a href="#contacto" class="btn btn-outline-panel">
-                                Contacto <i class="bi bi-arrow-right"></i>
-                            </a>
+                            <span class="servicios-item-number">04</span>
+                            <span class="servicios-item-name">Optimización web</span>
+                            <i class="bi bi-arrow-right servicios-item-arrow"></i>
 
-                        </div>
+                        </li>
+
+                    </ul>
+
+
+                    <!-- PANEL -->
+                    <div class="servicios-panel">
+
+                        <span class="servicios-panel-label">
+                            SERVICIOS <span id="servicioActualNum">01</span> DE 04
+                        </span>
+
+                        <h3 class="servicios-panel-title" id="servicioTitulo">
+                            Diseño digital
+                        </h3>
+
+                        <p class="servicios-panel-desc" id="servicioDesc">
+                            Haz que tu sitio sea fácil de entender y agradable de usar. Diseñamos experiencias digitales que organizan la información, facilitan la navegación y conectan las necesidades de tus usuarios con los objetivos de tu negocio.
+                        </p>
+
+                        <a href="#contacto" class="btn btn-outline-panel">
+                            Contacto <i class="bi bi-arrow-right"></i>
+                        </a>
 
                     </div>
 
@@ -334,7 +345,9 @@
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
     <!-- ========================= -->
     <!-- EQUIPO -->

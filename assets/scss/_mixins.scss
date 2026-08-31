@@ -1,0 +1,28 @@
+@mixin btn-contacto{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.5rem;
+    border: 1px solid $color-accent;
+    border-radius: 0px;
+    color: $color-dark;
+    background-color: transparent;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.25s ease;
+
+    i {
+        transition: transform 0.25s ease;
+    }
+
+    &:hover {
+        background-color: $color-accent;
+        color: $color-bg;
+
+        i {
+        transform: translateX(4px);
+        }
+    }
+}
+
