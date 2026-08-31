@@ -5,6 +5,12 @@
 
 /* === RESET === */
 
+*{
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -44,46 +50,6 @@ a {
 }
 
 
-/* ==========================
-   TITULOS y textos
-========================== */
-
-h1{
-    font-size:44px;
-    font-weight:700;
-}
-
-h2{
-    font-size:40px;
-    font-weight:500;
-}
-
-h3{
-    font-size:30px;
-    font-weight:300;
-}
-
-h4{
-    font-size:22px;
-    font-weight:500;
-}
-
-p.large{
-    font-size:18px;
-}
-
-p{
-    font-size:16px;
-}
-
-.small-text{
-    font-size:14px;
-}
-
-span{
-    font-size:12px;
-    font-weight:500;
-}
 
 
 /* ==========================
@@ -477,6 +443,7 @@ span{
     cursor: pointer;
 
     font-family: $font-body;
+    font-size: 1.25rem;
     border-bottom: 1px solid $color-gray-200;
     transition: $transition;
 
@@ -485,7 +452,8 @@ span{
     }
 
     .servicios-item-number {
-        font-size: .8rem;
+        font-size: 0.875rem;
+        font-family: $font-body;
         opacity: .55;
     }
 
@@ -522,19 +490,21 @@ span{
         margin-bottom: 16px;
 
         font-family: $font-body;
-        font-size: .75rem;
+        font-size: 0.75rem;
         letter-spacing: 1px;
         text-transform: uppercase;
         opacity: .55;
     }
 
     &-title {
-        font-size: 1.7rem;
+        font-size: 1.875rem;
         margin-bottom: 16px;
+        font-family: $font-heading;
     }
 
     &-desc {
         font-family: $font-body;
+        font-size: 1rem;
         line-height: 1.6;
         margin-bottom: 24px;
     }

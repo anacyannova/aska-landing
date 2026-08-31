@@ -1,4 +1,45 @@
 @charset "UTF-8";
+/* ==========================
+    TITULOS y textos
+========================== */
+body h1, body .h1 {
+  font-size: 44px;
+  font-weight: 700;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+body h2, body .h2 {
+  font-size: 40px;
+  font-weight: 500;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+body h3, body .h3 {
+  font-size: 30px;
+  font-weight: 300;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+body h4, body .h4 {
+  font-size: 22px;
+  font-weight: 500;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+body p.large {
+  font-size: 18px;
+  font-family: "Geist", sans-serif;
+}
+body p {
+  font-size: 16px;
+  font-family: "Geist", sans-serif;
+}
+body .small-text {
+  font-size: 14px;
+  font-family: "Geist", sans-serif;
+}
+body span {
+  font-size: 12px;
+  font-weight: 500;
+  font-family: "Geist", sans-serif;
+}
+
 /*!
  * Bootstrap  v5.3.8 (https://getbootstrap.com/)
  * Copyright 2011-2025 The Bootstrap Authors
@@ -11980,6 +12021,12 @@ textarea.form-control-lg {
   }
 }
 /* === RESET === */
+* {
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -12014,46 +12061,6 @@ a {
 ========================== */
 .container {
   max-width: 1320px;
-}
-
-/* ==========================
-   TITULOS y textos
-========================== */
-h1, .h1 {
-  font-size: 44px;
-  font-weight: 700;
-}
-
-h2, .h2 {
-  font-size: 40px;
-  font-weight: 500;
-}
-
-h3, .h3 {
-  font-size: 30px;
-  font-weight: 300;
-}
-
-h4, .h4 {
-  font-size: 22px;
-  font-weight: 500;
-}
-
-p.large {
-  font-size: 18px;
-}
-
-p {
-  font-size: 16px;
-}
-
-.small-text {
-  font-size: 14px;
-}
-
-span {
-  font-size: 12px;
-  font-weight: 500;
 }
 
 /* ==========================
@@ -12394,6 +12401,7 @@ span {
   padding: 18px 20px;
   cursor: pointer;
   font-family: "Geist", sans-serif;
+  font-size: 1.25rem;
   border-bottom: 1px solid #e8e8e8;
   transition: all 0.35s ease;
 }
@@ -12401,7 +12409,8 @@ span {
   border-bottom: none;
 }
 .servicios-item .servicios-item-number {
-  font-size: 0.8rem;
+  font-size: 0.875rem;
+  font-family: "Geist", sans-serif;
   opacity: 0.55;
 }
 .servicios-item .servicios-item-name {
@@ -12437,11 +12446,13 @@ span {
   opacity: 0.55;
 }
 .servicios-panel-title {
-  font-size: 1.7rem;
+  font-size: 1.875rem;
   margin-bottom: 16px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
 }
 .servicios-panel-desc {
   font-family: "Geist", sans-serif;
+  font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 24px;
 }

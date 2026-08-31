@@ -36,3 +36,56 @@ $container-max: 1320px;
 // =========================
 
 $transition: all .35s ease;
+
+/* ==========================
+    TITULOS y textos
+========================== */
+
+body{
+
+    h1{
+        font-size:44px;
+        font-weight:700;
+        font-family: $font-heading;
+    }
+
+    h2{
+        font-size:40px;
+        font-weight:500;
+        font-family: $font-heading;
+    }
+
+    h3{
+        font-size:30px;
+        font-weight:300;
+        font-family: $font-heading;
+    }
+
+    h4{
+        font-size:22px;
+        font-weight:500;
+        font-family: $font-heading;
+    }
+
+    p.large{
+        font-size:18px;
+        font-family: $font-body;
+    }
+
+    p{
+        font-size:16px;
+        font-family: $font-body;
+    }
+
+    .small-text{
+        font-size:14px;
+        font-family: $font-body;
+    }
+
+    span{
+        font-size:12px;
+        font-weight:500;
+        font-family: $font-body;
+    }
+
+}
