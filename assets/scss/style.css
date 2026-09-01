@@ -12499,19 +12499,150 @@ a {
    EQUIPO
 ========================== */
 .equipo-section {
-  background: #080808;
-  color: white;
+  position: relative;
+  background-image: url("/assets/img/seccion-equipo.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 5rem 0;
+  color: #fff;
 }
 
-.team-image {
+#teamRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+#teamRow > [class*=col-] {
+  width: auto;
+  max-width: none;
+  flex: unset;
+  padding: 0;
+}
+#teamRow.is-active {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem 1.5rem;
+}
+#teamRow.is-active > [class*=col-] {
+  width: auto;
+  max-width: none;
+  padding: 0;
+}
+#teamRow.is-active > [class*=col-]:nth-child(1) {
+  flex: 0 0 100%;
+}
+#teamRow.is-active > [class*=col-]:nth-child(1) .team-card {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+#teamRow.is-active > [class*=col-]:nth-child(1) .team-image {
+  width: 260px;
+  flex: 0 0 260px;
+  aspect-ratio: 3/4;
+}
+#teamRow.is-active > [class*=col-]:nth-child(1) .team-card-text {
+  justify-content: flex-start;
+  padding-top: 0.25rem;
+  max-width: 320px;
+}
+#teamRow.is-active > [class*=col-]:nth-child(1) h5, #teamRow.is-active > [class*=col-]:nth-child(1) .h5 {
+  font-size: 1.15rem;
+}
+#teamRow.is-active > [class*=col-]:nth-child(2) {
+  margin-left: calc(260px + 1.5rem);
+}
+#teamRow.is-active > [class*=col-]:nth-child(2),
+#teamRow.is-active > [class*=col-]:nth-child(3) {
+  flex: 0 0 auto;
+}
+#teamRow.is-active > [class*=col-]:nth-child(2) .team-card,
+#teamRow.is-active > [class*=col-]:nth-child(3) .team-card {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+}
+#teamRow.is-active > [class*=col-]:nth-child(2) .team-image,
+#teamRow.is-active > [class*=col-]:nth-child(3) .team-image {
+  width: 56px;
+  flex: 0 0 56px;
   aspect-ratio: 1/1;
-  background: #ffffff;
+}
+#teamRow.is-active > [class*=col-]:nth-child(2) h5, #teamRow.is-active > [class*=col-]:nth-child(2) .h5,
+#teamRow.is-active > [class*=col-]:nth-child(3) h5,
+#teamRow.is-active > [class*=col-]:nth-child(3) .h5 {
+  font-size: 0.8rem;
+}
+#teamRow.is-active > [class*=col-]:nth-child(2) p.role,
+#teamRow.is-active > [class*=col-]:nth-child(3) p.role {
+  font-size: 0.7rem;
 }
 
-.team-card h5, .team-card .h5 {
-  margin-top: 20px;
+.team-card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: gap 0.4s ease;
+}
+.team-card .team-image {
+  width: 100%;
+  aspect-ratio: 1/1;
+  background-color: #e9e9e6;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1), aspect-ratio 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.team-card .team-card-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 0.75rem;
+}
+.team-card .team-card-text h5, .team-card .team-card-text .h5 {
+  margin: 0;
+}
+.team-card .team-card-text p.role {
+  margin: 0;
+}
+.team-card .team-card-text .desc, .team-card .team-card-text .meta {
+  display: none;
 }
 
+#teamRow.is-active > [class*=col-]:nth-child(1) .team-card-text .desc, #teamRow.is-active > [class*=col-]:nth-child(1) .team-card-text .meta {
+  display: block;
+}
+#teamRow.is-active > [class*=col-]:nth-child(1) .team-card-text .desc {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  opacity: 0.8;
+  margin-top: 0.5rem;
+}
+#teamRow.is-active > [class*=col-]:nth-child(1) .team-card-text .meta {
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  opacity: 0.6;
+  margin-top: 0.75rem;
+}
+
+@media (max-width: 767px) {
+  #teamRow, #teamRow.is-active {
+    display: block;
+  }
+  #teamRow .team-card, #teamRow.is-active .team-card {
+    flex-direction: column !important;
+    margin-bottom: 2rem;
+  }
+  #teamRow .team-image, #teamRow.is-active .team-image {
+    width: 100% !important;
+    aspect-ratio: 1/1 !important;
+  }
+  #teamRow > [class*=col-]:nth-child(2), #teamRow.is-active > [class*=col-]:nth-child(2) {
+    margin-left: 0 !important;
+  }
+}
 /* ==========================
    CONTACTO
 ========================== */
@@ -12520,10 +12651,14 @@ a {
   align-items: center;
   gap: 12px;
   margin-bottom: 22px;
-  font-size: 0.95rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #600105;
+  letter-spacing: 1.5%;
 }
 .contacto-info-list li i {
   font-size: 1.1rem;
+  color: #111419;
 }
 
 .contacto-form-card {
@@ -12565,6 +12700,7 @@ a {
 .form-select-custom:focus {
   box-shadow: none;
   border-color: black;
+  background: transparent;
 }
 
 .contacto-form-card .form-control,

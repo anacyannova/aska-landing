@@ -117,3 +117,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+ /* ==========================
+       SOBRE NOSOTRAS
+    ========================== */
+document.addEventListener('DOMContentLoaded', function () {
+  const row = document.getElementById('teamRow');
+  if (!row) return;
+  const cols = Array.from(row.children);
+
+  cols.forEach(col => {
+    col.querySelector('.team-card').addEventListener('click', () => {
+      const isAlreadyActive = row.classList.contains('is-active') && row.firstElementChild === col;
+
+      if (isAlreadyActive) {
+        row.classList.remove('is-active');
+        return;
+      }
+
+      row.classList.add('is-active');
+      row.insertBefore(col, row.firstElementChild);
+    });
+  });
+});
