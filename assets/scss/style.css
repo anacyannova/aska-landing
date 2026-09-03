@@ -12455,6 +12455,27 @@ a {
     display: none;
   }
 }
+.servicios-item-content {
+  /* Botón "Contacto" dentro del acordeón mobile */
+}
+@media (max-width: 991.98px) {
+  .servicios-item-content .btn-outline-panel {
+    color: #ffffff;
+    border: 1px solid #111419;
+    background: transparent;
+  }
+  .servicios-item-content .btn-outline-panel .bi-arrow-right {
+    display: none;
+  }
+  .servicios-item-content .btn-outline-panel:hover {
+    color: #ffffff;
+    border-color: #111419;
+    background: rgba(17, 20, 25, 0.1);
+  }
+}
+.servicios-item {
+  /* Abre el acordeón cuando el item está activo */
+}
 .servicios-item.active .servicios-item-content {
   max-height: 600px;
   padding: 0 40px 30px;

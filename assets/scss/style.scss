@@ -498,8 +498,28 @@ a {
         @media (min-width: 992px) {
             display: none;
         }
+
+        /* Botón "Contacto" dentro del acordeón mobile */
+        @media (max-width: 991.98px) {
+            .btn-outline-panel {
+                color: $color-white;
+                border: 1px solid $color-dark;
+                background: transparent;
+
+                .bi-arrow-right {
+                    display: none;
+                }
+
+                &:hover {
+                    color: $color-white;
+                    border-color: $color-dark;
+                    background: rgba($color-dark, .1);
+                }
+            }
+        }
     }
 
+    /* Abre el acordeón cuando el item está activo */
     &.active {
         .servicios-item-content {
             max-height: 600px;
@@ -520,7 +540,7 @@ a {
             .servicios-item-number,
             .servicios-item-arrow {
                 opacity: 1;
-                transform: none; // sin rotación en desktop
+                transform: none;
             }
         }
     }
