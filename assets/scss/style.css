@@ -12508,10 +12508,39 @@ a {
   color: #fff;
 }
 
+.equipo-section .container {
+  position: relative;
+}
+
+.equipo-logo {
+  position: absolute;
+  top: 48%;
+  right: 8%;
+  width: 50px;
+  height: auto;
+  opacity: 0.2;
+  pointer-events: none;
+  z-index: 2;
+  transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1), right 0.5s cubic-bezier(0.4, 0, 0.2, 1), width 0.5s ease;
+}
+@media (max-width: 767px) {
+  .equipo-logo {
+    width: 56px;
+  }
+}
+
+.equipo-section.team-active .equipo-logo {
+  top: 30%;
+  right: calc(100% - 180px - 1rem);
+  width: 100px;
+}
+
 #teamRow {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
+  max-width: 960px;
+  margin-inline: auto;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 #teamRow > [class*=col-] {
@@ -12539,45 +12568,91 @@ a {
   gap: 1.5rem;
 }
 #teamRow.is-active > [class*=col-]:nth-child(1) .team-image {
-  width: 260px;
-  flex: 0 0 260px;
+  width: 300px;
+  height: 450px;
+  flex: 0 0 320px;
   aspect-ratio: 3/4;
+  margin-left: 2.5rem;
 }
 #teamRow.is-active > [class*=col-]:nth-child(1) .team-card-text {
   justify-content: flex-start;
   padding-top: 0.25rem;
-  max-width: 320px;
+}
+#teamRow.is-active > [class*=col-]:nth-child(1) .team-card-text .desc,
+#teamRow.is-active > [class*=col-]:nth-child(1) .team-card-text .meta {
+  display: block;
+}
+#teamRow.is-active > [class*=col-]:nth-child(1) .team-card-text .desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  opacity: 0.8;
+  margin-top: 0.5rem;
+  font-family: "Geist", sans-serif;
+}
+#teamRow.is-active > [class*=col-]:nth-child(1) .team-card-text .meta {
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  margin-top: 0.75rem;
+  font-family: "Geist", sans-serif;
+  font-weight: 500;
+}
+#teamRow.is-active > [class*=col-]:nth-child(1) .name-bar {
+  display: none;
 }
 #teamRow.is-active > [class*=col-]:nth-child(1) h5, #teamRow.is-active > [class*=col-]:nth-child(1) .h5 {
-  font-size: 1.15rem;
+  margin: 0;
+}
+#teamRow.is-active > [class*=col-]:nth-child(1) p.role {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+#teamRow.is-active > [class*=col-]:nth-child(1) p.role::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 80px;
+  height: 2px;
+  background: #BDD8F3;
 }
 #teamRow.is-active > [class*=col-]:nth-child(2) {
-  margin-left: calc(260px + 1.5rem);
+  margin-left: calc(320px + 2.5rem + 1.5rem);
 }
 #teamRow.is-active > [class*=col-]:nth-child(2),
 #teamRow.is-active > [class*=col-]:nth-child(3) {
   flex: 0 0 auto;
+  margin-top: -280px;
 }
 #teamRow.is-active > [class*=col-]:nth-child(2) .team-card,
 #teamRow.is-active > [class*=col-]:nth-child(3) .team-card {
-  flex-direction: row;
-  align-items: center;
-  gap: 0.75rem;
+  align-items: stretch;
+}
+#teamRow.is-active > [class*=col-]:nth-child(2) .team-card-text,
+#teamRow.is-active > [class*=col-]:nth-child(3) .team-card-text {
+  align-items: stretch;
+}
+#teamRow.is-active > [class*=col-]:nth-child(2) .team-card-info,
+#teamRow.is-active > [class*=col-]:nth-child(3) .team-card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 #teamRow.is-active > [class*=col-]:nth-child(2) .team-image,
 #teamRow.is-active > [class*=col-]:nth-child(3) .team-image {
-  width: 56px;
-  flex: 0 0 56px;
+  width: 200px;
+  flex: 0 0 10px;
   aspect-ratio: 1/1;
 }
 #teamRow.is-active > [class*=col-]:nth-child(2) h5, #teamRow.is-active > [class*=col-]:nth-child(2) .h5,
 #teamRow.is-active > [class*=col-]:nth-child(3) h5,
 #teamRow.is-active > [class*=col-]:nth-child(3) .h5 {
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 #teamRow.is-active > [class*=col-]:nth-child(2) p.role,
 #teamRow.is-active > [class*=col-]:nth-child(3) p.role {
-  font-size: 0.7rem;
+  font-size: 0.875rem;
 }
 
 .team-card {
@@ -12597,9 +12672,14 @@ a {
 }
 .team-card .team-card-text {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 0.5rem;
   margin-top: 0.75rem;
+}
+.team-card .team-card-text .name-bar {
+  width: 2px;
+  background: #BDD8F3;
 }
 .team-card .team-card-text h5, .team-card .team-card-text .h5 {
   margin: 0;
@@ -12611,35 +12691,24 @@ a {
   display: none;
 }
 
-#teamRow.is-active > [class*=col-]:nth-child(1) .team-card-text .desc, #teamRow.is-active > [class*=col-]:nth-child(1) .team-card-text .meta {
-  display: block;
-}
-#teamRow.is-active > [class*=col-]:nth-child(1) .team-card-text .desc {
-  font-size: 0.85rem;
-  line-height: 1.6;
-  opacity: 0.8;
-  margin-top: 0.5rem;
-}
-#teamRow.is-active > [class*=col-]:nth-child(1) .team-card-text .meta {
-  font-size: 0.7rem;
-  letter-spacing: 0.04em;
-  opacity: 0.6;
-  margin-top: 0.75rem;
-}
-
 @media (max-width: 767px) {
-  #teamRow, #teamRow.is-active {
+  #teamRow,
+  #teamRow.is-active {
     display: block;
+    align-content: flex-start;
   }
-  #teamRow .team-card, #teamRow.is-active .team-card {
+  #teamRow .team-card,
+  #teamRow.is-active .team-card {
     flex-direction: column !important;
     margin-bottom: 2rem;
   }
-  #teamRow .team-image, #teamRow.is-active .team-image {
+  #teamRow .team-image,
+  #teamRow.is-active .team-image {
     width: 100% !important;
     aspect-ratio: 1/1 !important;
   }
-  #teamRow > [class*=col-]:nth-child(2), #teamRow.is-active > [class*=col-]:nth-child(2) {
+  #teamRow > [class*=col-]:nth-child(2),
+  #teamRow.is-active > [class*=col-]:nth-child(2) {
     margin-left: 0 !important;
   }
 }

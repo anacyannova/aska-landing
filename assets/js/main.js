@@ -120,22 +120,25 @@ document.addEventListener('DOMContentLoaded', () => {
  /* ==========================
        SOBRE NOSOTRAS
     ========================== */
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
   const row = document.getElementById('teamRow');
+  const section = document.querySelector('.equipo-section');
   if (!row) return;
-  const cols = Array.from(row.children);
 
-  cols.forEach(col => {
-    col.querySelector('.team-card').addEventListener('click', () => {
-      const isAlreadyActive = row.classList.contains('is-active') && row.firstElementChild === col;
+  row.querySelectorAll('.team-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const col = card.closest('[class*="col-"]');
+      const isCurrentlyFirst = row.firstElementChild === col;
 
-      if (isAlreadyActive) {
+      if (isCurrentlyFirst && row.classList.contains('is-active')) {
         row.classList.remove('is-active');
+        section.classList.remove('team-active');
         return;
       }
 
+      row.prepend(col);
       row.classList.add('is-active');
-      row.insertBefore(col, row.firstElementChild);
+      section.classList.add('team-active');
     });
   });
 });

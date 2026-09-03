@@ -537,13 +537,39 @@ a {
   background-repeat: no-repeat;
   padding: 5rem 0;
   color: #fff;
-
 }
 
+// Logo
+.equipo-section .container {
+  position: relative;
+}
+
+.equipo-logo {
+  position: absolute;
+  top: 48%;      
+  right: 8%;
+  width: 50px;
+  height: auto;
+  opacity: .20;
+  pointer-events: none;
+  z-index: 2;
+  transition: top .5s cubic-bezier(.4,0,.2,1), right .5s cubic-bezier(.4,0,.2,1), width .5s ease;
+
+  @media (max-width: 767px) { width: 56px; }
+}
+.equipo-section.team-active .equipo-logo {
+  top: 30%;
+  right: calc(100% - 180px - 1rem); // pegado al borde derecho de la foto grande (260px = ancho activo de .team-image)
+  width: 100px;
+}
+
+// Contenedor de tarjetas
 #teamRow {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
+  max-width: 960px;
+  margin-inline: auto;
   transition: all .5s cubic-bezier(.4,0,.2,1);
 
   > [class*="col-"] {
@@ -553,14 +579,19 @@ a {
     padding: 0;
   }
 
+  // Estado activo
   &.is-active {
     display: flex;
     flex-wrap: wrap;
     gap: 2rem 1.5rem;
 
-    > [class*="col-"] { width: auto; max-width: none; padding: 0; }
+    > [class*="col-"] {
+      width: auto;
+      max-width: none;
+      padding: 0;
+    }
 
-    // tarjeta activa: ocupa todo el ancho, fuerza el salto de línea
+    // Tarjeta activa
     > [class*="col-"]:nth-child(1) {
       flex: 0 0 100%;
 
@@ -571,42 +602,109 @@ a {
       }
 
       .team-image {
-        width: 260px;
-        flex: 0 0 260px;
+        width: 300px; 
+        height:450px;      
+        flex: 0 0 320px;
         aspect-ratio: 3 / 4;
+        margin-left: 2.5rem;  // la empuja hacia el centro
+    }
+
+      .team-card-text {
+        justify-content: flex-start;
+        padding-top: .25rem;
+
+
+        .desc,
+        .meta {
+          display: block;
+        }
+
+        .desc {
+          font-size: 1rem;
+          line-height: 1.6;
+          opacity: .8;
+          margin-top: .5rem;
+          font-family: $font-body;
+        }
+
+        .meta {
+          font-size: 0.75rem;
+          letter-spacing: .04em;
+          margin-top: .75rem;
+          font-family: $font-body;
+          font-weight: 500;
+        }
       }
+    .name-bar {
+        display: none;
+    }
+    h5 {
+    margin: 0; // ya no necesita padding/margin-bottom, ese trabajo ahora lo hace .role
+  }
 
-      .team-card-text { justify-content: flex-start; padding-top: .25rem; max-width: 320px; }
-      h5 { font-size: 1.15rem; }
+  p.role {
+    position: relative;
+    display: inline-block;
+    padding-bottom: .5rem;
+    margin-bottom: .5rem;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 80px;
+      height: 2px;
+      background: $color-lightblue;
+    }
+  }
+  
+
     }
 
-    // miniaturas: juntas, alineadas debajo del texto (no de la imagen)
-    > [class*="col-"]:nth-child(2) {
-      margin-left: calc(260px + 1.5rem); // ancho de la imagen activa + su gap
+    // Miniaturas
+     > [class*="col-"]:nth-child(2) {
+        margin-left: calc(320px + 2.5rem + 1.5rem); // ajustado al nuevo ancho de la img + margin-left de la imagen + gap
     }
-
+    
     > [class*="col-"]:nth-child(2),
     > [class*="col-"]:nth-child(3) {
       flex: 0 0 auto;
+      margin-top: -280px; // mismo valor para las dos miniaturas
+  
 
-      .team-card {
-        flex-direction: row;
-        align-items: center;
-        gap: .75rem;
-      }
+    .team-card { 
+        align-items: stretch; 
+    }        // antes: center
+
+    .team-card-text { 
+        align-items: stretch; 
+    }    // el name-bar toma el alto completo (56px, igual a la imagen)
+
+    .team-card-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;                   // el texto queda centrado DENTRO de ese alto
+    }
 
       .team-image {
-        width: 56px;
-        flex: 0 0 56px;
+        width: 200px;
+        flex: 0 0 10px;
         aspect-ratio: 1 / 1;
       }
 
-      h5 { font-size: .8rem; }
-      p.role { font-size: .7rem; }
+      h5 {
+        font-size: 1rem;
+      }
+
+      p.role {
+        font-size: 0.875rem;
+      }
     }
   }
 }
 
+// Tarjeta
 .team-card {
   display: flex;
   flex-direction: column;
@@ -620,34 +718,50 @@ a {
     background-size: cover;
     background-position: center;
     flex-shrink: 0;
-    transition: width .5s cubic-bezier(.4,0,.2,1), aspect-ratio .5s cubic-bezier(.4,0,.2,1);
+    transition:
+      width .5s cubic-bezier(.4,0,.2,1),
+      aspect-ratio .5s cubic-bezier(.4,0,.2,1);
   }
 
-  .team-card-text {
+    .team-card-text {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;      // clave: fuerza que quede al lado, no arriba
+    align-items: stretch;     // el name-bar toma el alto del texto al lado
+    gap: 0.5rem;
     margin-top: .75rem;
+
+    .name-bar {
+        width: 2px;
+        background: $color-lightblue;
+    }
 
     h5 { margin: 0; }
     p.role { margin: 0; }
-
     .desc, .meta { display: none; }
+    }
   }
-}
 
-#teamRow.is-active > [class*="col-"]:nth-child(1) .team-card-text {
-  .desc, .meta { display: block; }
-  .desc { font-size: .85rem; line-height: 1.6; opacity: .8; margin-top: .5rem; }
-  .meta { font-size: .7rem; letter-spacing: .04em; opacity: .6; margin-top: .75rem; }
-}
 
+// Responsive
 @media (max-width: 767px) {
-  #teamRow, #teamRow.is-active {
+  #teamRow,
+  #teamRow.is-active {
     display: block;
-    .team-card { flex-direction: column !important; margin-bottom: 2rem; }
-    .team-image { width: 100% !important; aspect-ratio: 1/1 !important; }
-    > [class*="col-"]:nth-child(2) { margin-left: 0 !important; }
+    align-content: flex-start;
+
+    .team-card {
+      flex-direction: column !important;
+      margin-bottom: 2rem;
+    }
+
+    .team-image {
+      width: 100% !important;
+      aspect-ratio: 1 / 1 !important;
+    }
+
+    > [class*="col-"]:nth-child(2) {
+      margin-left: 0 !important;
+    }
   }
 }
 /* ==========================
