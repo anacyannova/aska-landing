@@ -12382,7 +12382,7 @@ a {
   grid-template-columns: 1fr 1fr;
   align-items: start;
 }
-@media (max-width: 767px) {
+@media (max-width: 991.98px) {
   .servicios-wrapper {
     grid-template-columns: 1fr;
   }
@@ -12399,8 +12399,9 @@ a {
   margin: 0;
   padding: 0;
 }
-@media (max-width: 767px) {
+@media (max-width: 991.98px) {
   .servicios-list {
+    max-width: 100%;
     border-right: none;
     border-bottom: 1px solid #e8e8e8;
   }
@@ -12408,9 +12409,7 @@ a {
 
 .servicios-item {
   display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 30px 40px;
+  flex-direction: column;
   cursor: pointer;
   font-family: "Geist", sans-serif;
   border-bottom: 1px solid #e8e8e8;
@@ -12418,6 +12417,12 @@ a {
 }
 .servicios-item:last-child {
   border-bottom: none;
+}
+.servicios-item-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 30px 40px;
 }
 .servicios-item .servicios-item-number {
   font-size: 0.875rem;
@@ -12434,21 +12439,68 @@ a {
   opacity: 0.4;
   transition: all 0.35s ease;
 }
-.servicios-item:hover:not(.active) {
-  background: #f8f8f8;
+.servicios-item-content {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 40px;
+  font-size: 1rem;
+  line-height: 1.6;
+  transition: max-height 0.35s ease, padding 0.35s ease;
 }
-.servicios-item.active {
-  background: #600105;
-  color: #ffffff;
+.servicios-item-content p {
+  margin-bottom: 20px;
 }
-.servicios-item.active .servicios-item-number,
-.servicios-item.active .servicios-item-arrow {
-  opacity: 1;
+@media (min-width: 992px) {
+  .servicios-item-content {
+    display: none;
+  }
+}
+.servicios-item.active .servicios-item-content {
+  max-height: 600px;
+  padding: 0 40px 30px;
+}
+.servicios-item {
+  /* ---- DESKTOP (>=992px) ---- */
+}
+@media (min-width: 992px) {
+  .servicios-item:hover:not(.active) {
+    background: #f8f8f8;
+  }
+  .servicios-item.active {
+    background: #600105;
+    color: #ffffff;
+  }
+  .servicios-item.active .servicios-item-number,
+  .servicios-item.active .servicios-item-arrow {
+    opacity: 1;
+    transform: none;
+  }
+}
+.servicios-item {
+  /* ---- MOBILE / TABLET (<=991.98px) ---- */
+}
+@media (max-width: 991.98px) {
+  .servicios-item.active {
+    background: #600105;
+    color: #ffffff;
+  }
+  .servicios-item.active .servicios-item-number,
+  .servicios-item.active .servicios-item-arrow {
+    opacity: 1;
+  }
+  .servicios-item.active .servicios-item-arrow {
+    transform: rotate(90deg);
+  }
 }
 
 .servicios-panel {
   min-height: 300px;
   padding: 32px;
+}
+@media (max-width: 991.98px) {
+  .servicios-panel {
+    display: none;
+  }
 }
 .servicios-panel-label {
   display: block;

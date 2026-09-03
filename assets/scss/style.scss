@@ -413,15 +413,16 @@ a {
 /* ==========================
    SERVICIOS
 ========================== */
-#servicios{
+#servicios {
     margin: 150px 0;
 }
+
 .servicios-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: start;
 
-    @media (max-width: 767px) {
+    @media (max-width: 991.98px) {
         grid-template-columns: 1fr;
     }
 }
@@ -436,10 +437,10 @@ a {
         list-style: none;
         margin: 0;
         padding: 0;
-        
     }
 
-    @media (max-width: 767px) {
+    @media (max-width: 991.98px) {
+        max-width: 100%;
         border-right: none;
         border-bottom: 1px solid $color-gray-200;
     }
@@ -447,18 +448,21 @@ a {
 
 .servicios-item {
     display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 30px 40px;
+    flex-direction: column;
     cursor: pointer;
-
     font-family: $font-body;
-
     border-bottom: 1px solid $color-gray-200;
     transition: $transition;
 
     &:last-child {
         border-bottom: none;
+    }
+
+    &-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 30px 40px;
     }
 
     .servicios-item-number {
@@ -479,17 +483,62 @@ a {
         transition: $transition;
     }
 
-    &:hover:not(.active) {
-        background: $color-gray-100;
+    &-content {
+        max-height: 0;
+        overflow: hidden;
+        padding: 0 40px;
+        font-size: 1rem;
+        line-height: 1.6;
+        transition: max-height 0.35s ease, padding 0.35s ease;
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        @media (min-width: 992px) {
+            display: none;
+        }
     }
 
     &.active {
-        background: $color-accent;
-        color: $color-white;
+        .servicios-item-content {
+            max-height: 600px;
+            padding: 0 40px 30px;
+        }
+    }
 
-        .servicios-item-number,
-        .servicios-item-arrow {
-            opacity: 1;
+    /* ---- DESKTOP (>=992px) ---- */
+    @media (min-width: 992px) {
+        &:hover:not(.active) {
+            background: $color-gray-100;
+        }
+
+        &.active {
+            background: $color-accent;
+            color: $color-white;
+
+            .servicios-item-number,
+            .servicios-item-arrow {
+                opacity: 1;
+                transform: none; // sin rotación en desktop
+            }
+        }
+    }
+
+    /* ---- MOBILE / TABLET (<=991.98px) ---- */
+    @media (max-width: 991.98px) {
+        &.active {
+            background: $color-accent;
+            color: $color-white;
+
+            .servicios-item-number,
+            .servicios-item-arrow {
+                opacity: 1;
+            }
+
+            .servicios-item-arrow {
+                transform: rotate(90deg);
+            }
         }
     }
 }
@@ -497,6 +546,10 @@ a {
 .servicios-panel {
     min-height: 300px;
     padding: 32px;
+
+    @media (max-width: 991.98px) {
+        display: none; // reemplazado por el acordeón en mobile/tablet
+    }
 
     &-label {
         display: block;
@@ -520,11 +573,11 @@ a {
         line-height: 1.6;
         margin-bottom: 24px;
     }
-    .btn-outline-panel{
+
+    .btn-outline-panel {
         @include btn-contacto;
     }
 }
-
 
 /* ==========================
    EQUIPO

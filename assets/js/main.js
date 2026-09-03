@@ -62,27 +62,39 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ==========================
        SERVICIOS: lista + panel de detalle
     ========================== */
-
     const serviciosList = document.getElementById('serviciosList');
 
-    if (serviciosList) {
-        const items = serviciosList.querySelectorAll('.servicios-item');
-        const tituloEl = document.getElementById('servicioTitulo');
-        const descEl = document.getElementById('servicioDesc');
-        const numEl = document.getElementById('servicioActualNum');
+if (serviciosList) {
+    const items = serviciosList.querySelectorAll('.servicios-item');
+    const tituloEl = document.getElementById('servicioTitulo');
+    const descEl = document.getElementById('servicioDesc');
+    const numEl = document.getElementById('servicioActualNum');
 
-        items.forEach(item => {
-            item.addEventListener('click', () => {
-                items.forEach(i => i.classList.remove('active'));
-                item.classList.add('active');
+    const isMobileOrTablet = () => window.matchMedia('(max-width: 991.98px)').matches;
 
-                tituloEl.textContent = item.dataset.title;
-                descEl.textContent = item.dataset.desc;
-                numEl.textContent = String(Number(item.dataset.index) + 1).padStart(2, '0');
-            });
+    items.forEach(item => {
+        const header = item.querySelector('.servicios-item-header');
+
+        header.addEventListener('click', () => {
+            const yaActivo = item.classList.contains('active');
+
+            // En mobile/tablet: click sobre el item abierto -> se cierra (acordeón)
+            if (isMobileOrTablet() && yaActivo) {
+                item.classList.remove('active');
+                return;
+            }
+
+            items.forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+
+            // El panel de desktop solo tiene sentido actualizarlo ahí,
+            // pero no molesta dejarlo siempre sincronizado
+            tituloEl.textContent = item.dataset.title;
+            descEl.textContent = item.dataset.desc;
+            numEl.textContent = String(Number(item.dataset.index) + 1).padStart(2, '0');
         });
-    }
-
+    });
+}
 
     /* ==========================
        PROYECTO DESTACADO: carrusel + barra de progreso
