@@ -137,8 +137,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const section = document.querySelector('.equipo-section');
   if (!row) return;
 
+  const isMobile = () => window.innerWidth <= 767;
+
   row.querySelectorAll('.team-card').forEach(card => {
     card.addEventListener('click', () => {
+      if (isMobile()) return; // en mobile es solo slider, no expande
+
       const col = card.closest('[class*="col-"]');
       const isCurrentlyFirst = row.firstElementChild === col;
 

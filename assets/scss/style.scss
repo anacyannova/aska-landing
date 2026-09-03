@@ -49,6 +49,16 @@ a {
     margin-right: auto;
     padding-left: 90px;
     padding-right: 90px;
+
+    @media (max-width: 991.98px) {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    @media (max-width: 575.98px) {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 }
 
 
@@ -503,8 +513,9 @@ a {
         @media (max-width: 991.98px) {
             .btn-outline-panel {
                 color: $color-white;
-                border: 1px solid $color-dark;
+                border: 1px solid $color-white;
                 background: transparent;
+                border-radius: 0px;
 
                 .bi-arrow-right {
                     display: none;
@@ -512,8 +523,8 @@ a {
 
                 &:hover {
                     color: $color-white;
-                    border-color: $color-dark;
-                    background: rgba($color-dark, .1);
+                    border-color: $color-white;
+                    background: rgba($color-white, .1);
                 }
             }
         }
@@ -612,7 +623,7 @@ a {
   color: #fff;
 }
 
-// Logo
+
 .equipo-section .container {
   position: relative;
 }
@@ -815,28 +826,45 @@ a {
   }
 
 
-// Responsive
 @media (max-width: 767px) {
   #teamRow,
   #teamRow.is-active {
-    display: block;
-    align-content: flex-start;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 1rem;
+    padding-bottom: .5rem;
+
+    // oculta la scrollbar (opcional, solo estético)
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+
+    > [class*="col-"] {
+      flex: 0 0 78%;      // deja asomar la siguiente tarjeta (efecto "peek")
+      max-width: 78%;
+      scroll-snap-align: center;
+      margin-top: 0 !important;   // pisa el margin-top negativo del desktop activo
+      margin-left: 0 !important;  // pisa el calc() del desktop activo
+    }
 
     .team-card {
       flex-direction: column !important;
-      margin-bottom: 2rem;
+      align-items: stretch !important;
     }
 
     .team-image {
       width: 100% !important;
-      aspect-ratio: 1 / 1 !important;
+      flex: unset !important;
+      aspect-ratio: 1/1 !important;
     }
 
-    > [class*="col-"]:nth-child(2) {
-      margin-left: 0 !important;
-    }
+    // en mobile ninguna tarjeta se ve "expandida"
+    .desc, .meta { display: none !important; }
   }
 }
+
 /* ==========================
    CONTACTO
 ========================== */

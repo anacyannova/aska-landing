@@ -12065,6 +12065,18 @@ a {
   padding-left: 90px;
   padding-right: 90px;
 }
+@media (max-width: 991.98px) {
+  .container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+@media (max-width: 575.98px) {
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
 
 /* ==========================
    NAVBAR
@@ -12461,16 +12473,17 @@ a {
 @media (max-width: 991.98px) {
   .servicios-item-content .btn-outline-panel {
     color: #ffffff;
-    border: 1px solid #111419;
+    border: 1px solid #ffffff;
     background: transparent;
+    border-radius: 0px;
   }
   .servicios-item-content .btn-outline-panel .bi-arrow-right {
     display: none;
   }
   .servicios-item-content .btn-outline-panel:hover {
     color: #ffffff;
-    border-color: #111419;
-    background: rgba(17, 20, 25, 0.1);
+    border-color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
   }
 }
 .servicios-item {
@@ -12767,22 +12780,42 @@ a {
 @media (max-width: 767px) {
   #teamRow,
   #teamRow.is-active {
-    display: block;
-    align-content: flex-start;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+  }
+  #teamRow::-webkit-scrollbar,
+  #teamRow.is-active::-webkit-scrollbar {
+    display: none;
+  }
+  #teamRow > [class*=col-],
+  #teamRow.is-active > [class*=col-] {
+    flex: 0 0 78%;
+    max-width: 78%;
+    scroll-snap-align: center;
+    margin-top: 0 !important;
+    margin-left: 0 !important;
   }
   #teamRow .team-card,
   #teamRow.is-active .team-card {
     flex-direction: column !important;
-    margin-bottom: 2rem;
+    align-items: stretch !important;
   }
   #teamRow .team-image,
   #teamRow.is-active .team-image {
     width: 100% !important;
+    flex: unset !important;
     aspect-ratio: 1/1 !important;
   }
-  #teamRow > [class*=col-]:nth-child(2),
-  #teamRow.is-active > [class*=col-]:nth-child(2) {
-    margin-left: 0 !important;
+  #teamRow .desc, #teamRow .meta,
+  #teamRow.is-active .desc,
+  #teamRow.is-active .meta {
+    display: none !important;
   }
 }
 /* ==========================
