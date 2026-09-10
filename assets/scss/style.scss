@@ -76,10 +76,15 @@ a {
     gap: 30px;
 }
 .navbar-brand {
-    color: $color-bg;
-    font-weight: 700;
-    letter-spacing: 2px;
-    transition: $transition;
+    display: flex;
+    align-items: center;
+
+    img {
+        height: 26px;
+        width: auto;
+        display: block;
+        transition: $transition;
+    }
 }
 .nav-link {
     color: $color-bg;
@@ -142,10 +147,13 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    text-align: center;
     .hero-logo-img {
         width: 180px;
         height: auto;
         display: block;
+        margin: 0 auto;
     }
     .hero-logo-sub {
         font-family: $font-heading;

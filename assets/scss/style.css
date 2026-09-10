@@ -12101,9 +12101,13 @@ a {
 }
 
 .navbar-brand {
-  color: #FDFDF5;
-  font-weight: 700;
-  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+}
+.navbar-brand img {
+  height: 26px;
+  width: auto;
+  display: block;
   transition: all 0.35s ease;
 }
 
@@ -12171,11 +12175,14 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 .hero-logo-card .hero-logo-img {
   width: 180px;
   height: auto;
   display: block;
+  margin: 0 auto;
 }
 .hero-logo-card .hero-logo-sub {
   font-family: "Helvetica Neue", Arial, sans-serif;
@@ -12598,7 +12605,7 @@ a {
 ========================== */
 .equipo-section {
   position: relative;
-  background-image: url("/assets/img/seccion-equipo.png");
+  background-image: url("../img/seccion-equipo.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

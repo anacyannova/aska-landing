@@ -6,20 +6,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const navbar = document.getElementById('mainNav');
     const hero = document.getElementById('inicio');
+    const navbarLogo = document.getElementById('navbarLogo');
 
-    if (navbar && hero) {
-        const toggleNavbar = () => {
-            const heroHeight = hero.offsetHeight;
-            if (window.scrollY > heroHeight - navbar.offsetHeight) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        };
+    if (navbar && hero && navbarLogo) {
 
-        toggleNavbar();
-        window.addEventListener('scroll', toggleNavbar);
-    }
+    const toggleNavbar = () => {
+
+        const heroHeight = hero.offsetHeight;
+
+        if (window.scrollY > heroHeight - navbar.offsetHeight) {
+
+            navbar.classList.add('scrolled');
+
+            navbarLogo.src = 'assets/img/logo-aska-dark.svg';
+
+        } else {
+
+            navbar.classList.remove('scrolled');
+
+            navbarLogo.src = 'assets/img/logo-aska-white.svg';
+        }
+    };
+
+    toggleNavbar();
+
+    window.addEventListener('scroll', toggleNavbar);
+}
 
 
     /* ==========================
