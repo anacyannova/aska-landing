@@ -337,25 +337,6 @@ a {
     gap: 12px;
 }
 
-.carousel-arrow {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-
-    border: 1px solid rgba(255, 255, 255, .3);
-    background: transparent;
-    color: white;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    transition: $transition;
-
-    &:hover {
-        background: rgba(255, 255, 255, .12);
-    }
-}
 
 .proyecto-track {
     display: flex;
@@ -381,23 +362,31 @@ a {
     }
 }
 
-.proyecto-progress {
-    height: 2px;
-    background: rgba(255, 255, 255, .15);
+
+.proyecto-scrollbar-wrap {
+    margin-top: 2.87rem; // el espacio que quieres, va aquí
+}
+
+.proyecto-scrollbar {
     position: relative;
+    height: 4px;
+    background: rgba(255, 255, 255, .15);
+    cursor: grab;
+
+    &:active {
+        cursor: grabbing;
+    }
+
+    .swiper-scrollbar-drag {
+        background: white;
+        border-radius: 2px;
+        cursor: grab;
+
+        &:active {
+            cursor: grabbing;
+        }
+    }
 }
-
-.proyecto-progress-bar {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 25%;
-    background: white;
-    transition: width .2s ease;
-}
-
-
 /* ==========================
    SERVICIOS
 ========================== */

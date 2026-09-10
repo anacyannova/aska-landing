@@ -15,6 +15,7 @@
     <!-- CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="assets/scss/style.css">
 </head>
 
@@ -178,62 +179,40 @@
     <!-- PROYECTO DESTACADO -->
     <!-- ========================= -->
 
-    <section class="proyecto-destacado">
+   <section class="proyecto-destacado">
 
-        <div class="container">
+    <div class="container">
 
-            <div class="row mb-4">
-
-                <div class="col-lg-4">
-
-                    <h2>
-                        PROYECTO
-                        <br>
-                        DESTACADO
-                    </h2>
-
-                    <h3 class="mt-4">
-                        Nombre del Proyecto
-                    </h3>
-
-                </div>
-
-                <div class="col-lg-6 offset-lg-2">
-
-                    <p>
-                        Descripción breve del proyecto,
-                        objetivos y resultados.
-                    </p>
-
-                </div>
-
+        <div class="row mb-4">
+            <div class="col-lg-4">
+                <h2>PROYECTO<br>DESTACADO</h2>
+                <h3 class="mt-4">Nombre del Proyecto</h3>
             </div>
 
-            <div class="proyecto-nav mb-4">
-                <button class="carousel-arrow" id="proyectoPrev" aria-label="Anterior">
-                    <i class="bi bi-arrow-left"></i>
-                </button>
-                <button class="carousel-arrow" id="proyectoNext" aria-label="Siguiente">
-                    <i class="bi bi-arrow-right"></i>
-                </button>
+            <div class="col-lg-6 offset-lg-2">
+                <p>Descripción breve del proyecto, objetivos y resultados.</p>
             </div>
-
-            <div class="proyecto-track" id="proyectoTrack">
-
-                <div class="project-image"></div>
-                <div class="project-image"></div>
-                <div class="project-image"></div>
-                <div class="project-image"></div>
-
-            </div>
-
-            <div class="proyecto-progress mt-4">
-                <div class="proyecto-progress-bar" id="proyectoProgressBar"></div>
-            </div>
-
         </div>
 
-    </section>
+        <div class="swiper proyecto-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><div class="project-image"></div></div>
+                <div class="swiper-slide"><div class="project-image"></div></div>
+                <div class="swiper-slide"><div class="project-image"></div></div>
+                <div class="swiper-slide"><div class="project-image"></div></div>
+                <div class="swiper-slide"><div class="project-image"></div></div>
+                <div class="swiper-slide"><div class="project-image"></div></div>
+                <div class="swiper-slide"><div class="project-image"></div></div>
+                <div class="swiper-slide"><div class="project-image"></div></div>
+            </div>  
+        </div>
+        <div class="proyecto-scrollbar-wrap">
+            <div class="proyecto-scrollbar mt-2"></div>
+        </div>
+
+    </div>
+
+</section>
 
     <!-- ========================= -->
     <!-- SERVICIOS -->
@@ -550,7 +529,7 @@
     <script src="assets/bootstrap-5.3.8/js/dist/"></script>-->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <!-- JS propio (navbar, proceso, servicios, carrusel) -->
     <script src="assets/js/main.js"></script>
 
