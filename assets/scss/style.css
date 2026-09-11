@@ -12219,7 +12219,7 @@ a {
 }
 
 /* ==========================
-   NOSOTROS
+    NOSOTROS
 ========================== */
 #nosotros {
   background: #FDFDF5;
@@ -12235,35 +12235,33 @@ a {
 }
 
 .logo-mark-box {
-  height: 450px;
+  height: 320px;
+  width: 390px;
+  margin-left: auto;
   position: relative;
   overflow: hidden;
   background: #111419;
-  color: #ffffff;
 }
-.logo-mark-box .logo-mark-word {
+
+.logo-mark-word {
   position: absolute;
-  left: 28px;
+  left: 30px;
   top: 50%;
-  transform: translateY(-50%) rotate(-90deg);
-  transform-origin: left center;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 3px;
-  white-space: nowrap;
+  transform: translateY(-50%);
+  height: 342px;
+  width: auto;
 }
-.logo-mark-box .logo-mark-k {
+
+.logo-mark-k {
   position: absolute;
-  right: -20px;
-  bottom: -60px;
-  font-size: 15rem;
-  font-weight: 700;
-  line-height: 1;
-  color: rgba(255, 255, 255, 0.12);
+  left: 300px;
+  top: 60px;
+  width: 60px;
+  height: auto;
 }
 
 /* ==========================
-   PROCESO (hover para expandir)
+    PROCESO (hover para expandir)
 ========================== */
 .procesos-track {
   display: flex;

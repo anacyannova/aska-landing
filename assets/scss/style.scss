@@ -192,9 +192,8 @@ a {
 
 
 /* ==========================
-   NOSOTROS
+    NOSOTROS
 ========================== */
-
 #nosotros {
     background: $color-bg;
 }
@@ -205,39 +204,32 @@ a {
     font-size: 1.5rem;
     margin-bottom: 30px;
 }
-
-// placeholder de la pieza gráfica con la "K". Reemplazar por imagen real.
 .logo-mark-box {
-    height: 450px;
+    height: 320px;
+    width: 390px;
+    margin-left: auto;
     position: relative;
     overflow: hidden;
     background: $color-dark;
-    color: $color-white;
-    .logo-mark-word {
-        position: absolute;
-        left: 28px;
-        top: 50%;
-        transform: translateY(-50%) rotate(-90deg);
-        transform-origin: left center;
-
-        font-size: 2rem;
-        font-weight: 700;
-        letter-spacing: 3px;
-        white-space: nowrap;
-    }
-    .logo-mark-k {
-        position: absolute;
-        right: -20px;
-        bottom: -60px;
-        font-size: 15rem;
-        font-weight: 700;
-        line-height: 1;
-        color: rgba(255, 255, 255, .12);
-    }
+}
+.logo-mark-word {
+    position: absolute;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 342px;
+    width: auto;
+}
+.logo-mark-k {
+    position: absolute;
+    left: 300px;
+    top: 60px;
+    width: 60px;
+    height: auto;
 }
 
 /* ==========================
-   PROCESO (hover para expandir)
+    PROCESO (hover para expandir)
 ========================== */
 .procesos-track {
     display: flex;
