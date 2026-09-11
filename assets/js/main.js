@@ -43,10 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
     ========================== */
     const procesosTrack = document.getElementById('procesosTrack');
 
-    if (procesosTrack) {
-        const cards = procesosTrack.querySelectorAll('.procesos-card');
-        const defaultIndex = 1; // "02 Proponer" queda activo por defecto
+if (procesosTrack) {
+    const cards = procesosTrack.querySelectorAll('.procesos-card');
+    const defaultIndex = 1; // "02 Proponer" queda activo por defecto
+    const hasHover = window.matchMedia('(hover: hover)').matches;
 
+    if (hasHover) {
         cards.forEach(card => {
             card.addEventListener('mouseenter', () => {
                 cards.forEach(c => c.classList.remove('active'));
@@ -58,9 +60,18 @@ document.addEventListener('DOMContentLoaded', () => {
             cards.forEach(c => c.classList.remove('active'));
             cards[defaultIndex].classList.add('active');
         });
+    } else {
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                if (card.classList.contains('active')) return;
+                cards.forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+
+                card.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+            });
+        });
     }
-
-
+}
     /* ==========================
        SERVICIOS: lista + panel de detalle
     ========================== */
