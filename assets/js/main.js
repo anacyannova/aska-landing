@@ -1,11 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ==========================
-       NAVBAR: cambia de estilo al hacer scroll
+        NAVBAR: cambia de estilo al hacer scroll
     ========================== */
+
     const navbar = document.getElementById('mainNav');
     const hero = document.getElementById('inicio');
     const navbarLogo = document.getElementById('navbarLogo');
+    const navbarToggler = document.querySelector('.navbar-toggler');
 
     if (navbar && hero && navbarLogo) {
 
@@ -13,21 +15,25 @@ document.addEventListener('DOMContentLoaded', () => {
             const heroHeight = hero.offsetHeight;
 
             if (window.scrollY > heroHeight - navbar.offsetHeight) {
+
                 navbar.classList.add('scrolled');
                 navbarLogo.src = 'assets/img/logo-aska-dark.svg';
+
             } else {
+
                 navbar.classList.remove('scrolled');
                 navbarLogo.src = 'assets/img/logo-aska-white.svg';
             }
         };
 
         toggleNavbar();
+
         window.addEventListener('scroll', toggleNavbar);
     }
 
 
     /* ==========================
-       BOTÓN "VOLVER ARRIBA" DEL HERO
+        BOTÓN "VOLVER ARRIBA" DEL HERO
     ========================== */
     const scrollTopBtn = document.getElementById('scrollTopBtn');
 
@@ -39,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================
-       PROCESO: se expande al hacer hover
+        PROCESO: se expande al hacer hover
     ========================== */
     const procesosTrack = document.getElementById('procesosTrack');
 
