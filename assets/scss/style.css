@@ -12369,31 +12369,47 @@ a {
   height: auto;
 }
 
+.nosotros-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  grid-template-areas: "intro logo" "process logo";
+  -moz-column-gap: 3rem;
+       column-gap: 3rem;
+  align-items: center;
+}
+
+.nosotros-intro {
+  grid-area: intro;
+}
+
+.nosotros-logo {
+  grid-area: logo;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.nosotros-process {
+  grid-area: process;
+}
+
 /*** NOSOTROS MOBILE ***/
 @media (max-width: 991.98px) {
-  #nosotros .row {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
+  .nosotros-layout {
+    grid-template-columns: 1fr;
+    grid-template-areas: "intro" "logo" "process";
+    row-gap: 0;
   }
-  #nosotros .col-lg-7 {
-    width: 100%;
-    text-align: left;
-  }
-  #nosotros .col-lg-7 h2, #nosotros .col-lg-7 .h2,
-  #nosotros .col-lg-7 .lead,
-  #nosotros .col-lg-7 p,
-  #nosotros .col-lg-7 h3,
-  #nosotros .col-lg-7 .h3 {
-    text-align: left;
-  }
-  #nosotros .col-lg-5 {
-    width: 100%;
-    display: flex;
+  .nosotros-logo {
     justify-content: center;
+    margin-top: 30px;
   }
-  #nosotros .logo-mark-box {
-    margin: 20px auto 0;
+  .nosotros-logo .logo-mark-box {
+    width: min(390px, 100%);
+    margin: 0 auto;
+  }
+  .nosotros-process {
+    margin-top: 30px;
   }
 }
 /*** METODOLOGIA ***/
