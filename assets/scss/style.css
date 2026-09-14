@@ -12245,11 +12245,6 @@ a {
   max-width: 350px;
 }
 
-@media (max-width: 991.98px) {
-  .hero h1, .hero .h1 {
-    margin-top: 70px;
-  }
-}
 .hero-logo-card {
   width: 320px;
   height: 320px;
@@ -12303,6 +12298,37 @@ a {
   background: #600105;
 }
 
+/*** HERO MOBILE***/
+@media (max-width: 991.98px) {
+  .hero .row {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .hero .col-lg-4 {
+    width: 100%;
+    text-align: center;
+  }
+  .hero h1, .hero .h1 {
+    margin-top: 0;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 350px;
+  }
+  .hero .col-lg-8 {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+  .hero-logo-card {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 /*** NOSOTROS ***/
 #nosotros {
   background: #FDFDF5;
@@ -12351,31 +12377,23 @@ a {
     margin-top: 20px;
   }
   #nosotros .col-lg-7 {
-    display: contents;
+    width: 100%;
+    text-align: left;
   }
-  #nosotros .col-lg-7 > h2, #nosotros .col-lg-7 > .h2 {
-    order: 1;
-  }
-  #nosotros .col-lg-7 > .lead {
-    order: 2;
-  }
-  #nosotros .col-lg-7 > p:not(.lead) {
-    order: 3;
+  #nosotros .col-lg-7 h2, #nosotros .col-lg-7 .h2,
+  #nosotros .col-lg-7 .lead,
+  #nosotros .col-lg-7 p,
+  #nosotros .col-lg-7 h3,
+  #nosotros .col-lg-7 .h3 {
+    text-align: left;
   }
   #nosotros .col-lg-5 {
-    order: 4;
     width: 100%;
     display: flex;
     justify-content: center;
   }
   #nosotros .logo-mark-box {
     margin: 20px auto 0;
-  }
-  #nosotros .col-lg-7 > h3, #nosotros .col-lg-7 > .h3 {
-    order: 5;
-  }
-  #nosotros .col-lg-7 > p:last-child {
-    order: 6;
   }
 }
 /*** METODOLOGIA ***/
