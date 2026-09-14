@@ -12343,6 +12343,41 @@ a {
   height: auto;
 }
 
+/*** NOSOTROS MOBILE ***/
+@media (max-width: 991.98px) {
+  #nosotros .row {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+  #nosotros .col-lg-7 {
+    display: contents;
+  }
+  #nosotros .col-lg-7 > h2, #nosotros .col-lg-7 > .h2 {
+    order: 1;
+  }
+  #nosotros .col-lg-7 > .lead {
+    order: 2;
+  }
+  #nosotros .col-lg-7 > p:not(.lead) {
+    order: 3;
+  }
+  #nosotros .col-lg-5 {
+    order: 4;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  #nosotros .logo-mark-box {
+    margin: 20px auto 0;
+  }
+  #nosotros .col-lg-7 > h3, #nosotros .col-lg-7 > .h3 {
+    order: 5;
+  }
+  #nosotros .col-lg-7 > p:last-child {
+    order: 6;
+  }
+}
 /*** METODOLOGIA ***/
 .procesos-track {
   display: flex;
