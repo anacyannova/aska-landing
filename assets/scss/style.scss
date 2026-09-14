@@ -336,19 +336,12 @@ a {
 /*** PROYECTO DESTACADO ***/
 
 .proyecto-destacado {
-    background: black;
-    color: white;
+    background-image: url('../img/seccion-proyecto-destacado.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     position: relative;
-    // línea vertical roja del borde izquierdo
-    &::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 3px;
-        background: linear-gradient(180deg, transparent, $color-accent, transparent);
-    }
+    color: $color-white;
 }
 .proyecto-nav {
     display: flex;
@@ -367,18 +360,16 @@ a {
 }
 .project-image {
     aspect-ratio: 1 / 1;
-    background: #d9d9d9;
+    background: $color-gray-300;
     flex: 0 0 calc(25% - 18px);
     scroll-snap-align: start;
     @media (max-width: 767px) {
         flex: 0 0 70%;
     }
 }
-
 .proyecto-scrollbar-wrap {
     margin-top: 2.87rem;
 }
-
 .proyecto-scrollbar {
     position: relative;
     height: 4px;

@@ -12372,18 +12372,12 @@ a {
 
 /*** PROYECTO DESTACADO ***/
 .proyecto-destacado {
-  background: black;
-  color: white;
+  background-image: url("../img/seccion-proyecto-destacado.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   position: relative;
-}
-.proyecto-destacado::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: linear-gradient(180deg, transparent, #600105, transparent);
+  color: #ffffff;
 }
 
 .proyecto-nav {
@@ -12404,7 +12398,7 @@ a {
 
 .project-image {
   aspect-ratio: 1/1;
-  background: #d9d9d9;
+  background: #d7d7d7;
   flex: 0 0 calc(25% - 18px);
   scroll-snap-align: start;
 }
