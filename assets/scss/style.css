@@ -12412,7 +12412,7 @@ a {
     margin-top: 30px;
   }
 }
-/*** METODOLOGIA ***/
+/*** PROCESOS O METODOLOGIA ***/
 .procesos-track {
   display: flex;
   gap: 12px;
@@ -12420,13 +12420,10 @@ a {
 }
 @media (max-width: 767.98px) {
   .procesos-track {
-    overflow-x: auto;
-    min-height: 180px;
-    scroll-snap-type: x proximity;
-    -webkit-overflow-scrolling: touch;
-  }
-  .procesos-track::-webkit-scrollbar {
-    display: none;
+    flex-direction: column;
+    min-height: auto;
+    gap: 9px;
+    overflow: visible;
   }
 }
 
@@ -12443,14 +12440,6 @@ a {
   padding: 24px;
   transition: flex 0.4s ease-in-out, background 0.3s ease, color 0.3s ease;
 }
-@media (max-width: 767.98px) {
-  .procesos-card {
-    flex: 0 0 auto;
-    width: 70px;
-    padding: 16px;
-    scroll-snap-align: start;
-  }
-}
 .procesos-card-number {
   position: absolute;
   top: 16px;
@@ -12463,9 +12452,9 @@ a {
 }
 @media (max-width: 767.98px) {
   .procesos-card-number {
-    font-size: 0.875rem;
-    top: 12px;
-    left: 12px;
+    font-size: 1rem;
+    top: 14px;
+    left: 16px;
   }
 }
 .procesos-card-label {
@@ -12479,7 +12468,7 @@ a {
 }
 @media (max-width: 767.98px) {
   .procesos-card-label {
-    font-size: 1rem;
+    display: none;
   }
 }
 .procesos-card-content {
@@ -12516,17 +12505,40 @@ a {
   justify-content: flex-start;
   text-align: left;
 }
-@media (max-width: 767.98px) {
-  .procesos-card.active {
-    flex: 0 0 auto;
-    width: 260px;
-  }
-}
 .procesos-card.active .procesos-card-label {
   display: none;
 }
 .procesos-card.active .procesos-card-content {
   display: block;
+}
+@media (max-width: 767.98px) {
+  .procesos-card.active {
+    flex: none;
+    width: 100%;
+    min-height: 220px;
+  }
+  .procesos-card.active .procesos-card-number {
+    display: none;
+  }
+  .procesos-card.active .procesos-card-label {
+    display: none;
+  }
+  .procesos-card.active .procesos-card-content {
+    display: block;
+  }
+}
+.procesos-card {
+  /* NOSOTROS Tarjetas mobile */
+}
+@media (max-width: 767.98px) {
+  .procesos-card {
+    flex: none;
+    width: 100%;
+    min-height: 120px;
+    padding: 36px 24px;
+    transition: min-height 0.45s ease;
+    scroll-snap-align: none;
+  }
 }
 
 /*** PROYECTO DESTACADO ***/
