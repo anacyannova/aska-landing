@@ -12021,7 +12021,7 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-/* === RESET === */
+/*** RESET ***/
 html {
   scroll-behavior: smooth;
 }
@@ -12037,8 +12037,7 @@ section {
   padding: 120px 0;
 }
 
-section[id],
-header[id] {
+section[id], header[id] {
   scroll-margin-top: 90px;
 }
 
@@ -12051,9 +12050,7 @@ a {
   text-decoration: none;
 }
 
-/* ==========================
-   CONTAINER
-========================== */
+/*** CONTAINER ***/
 .container {
   max-width: 1320px;
 }
@@ -12078,9 +12075,7 @@ a {
   }
 }
 
-/* ==========================
-   NAVBAR
-========================== */
+/*** NAVBAR ***/
 .navbar {
   padding: 25px 0;
   background: transparent;
@@ -12133,7 +12128,7 @@ a {
   color: #FDFDF5;
 }
 
-/* === HERO === */
+/*** HERO ***/
 .hero {
   min-height: 100vh;
   background-image: url("../img/banner.png");
@@ -12218,9 +12213,7 @@ a {
   background: #600105;
 }
 
-/* ==========================
-    NOSOTROS
-========================== */
+/*** NOSOTROS ***/
 #nosotros {
   background: #FDFDF5;
 }
@@ -12260,9 +12253,7 @@ a {
   height: auto;
 }
 
-/* ==========================
-    PROCESO (hover para expandir)
-========================== */
+/*** METODOLOGIA ***/
 .procesos-track {
   display: flex;
   gap: 12px;
@@ -12379,9 +12370,7 @@ a {
   display: block;
 }
 
-/* ==========================
-   PROYECTO DESTACADO
-========================== */
+/*** PROYECTO DESTACADO ***/
 .proyecto-destacado {
   background: black;
   color: white;
@@ -12447,9 +12436,7 @@ a {
   cursor: grabbing;
 }
 
-/* ==========================
-   SERVICIOS
-========================== */
+/*** SERVICIOS ***/
 #servicios {
   margin: 150px 0;
 }
@@ -12646,9 +12633,7 @@ a {
   transform: translateX(4px);
 }
 
-/* ==========================
-   EQUIPO
-========================== */
+/*** EQUIPO ***/
 .equipo-section {
   position: relative;
   background-image: url("../img/seccion-equipo.png");
@@ -12883,9 +12868,7 @@ a {
     display: none !important;
   }
 }
-/* ==========================
-   CONTACTO
-========================== */
+/*** CONTACTO ***/
 .contacto-info-list li {
   display: flex;
   align-items: center;
