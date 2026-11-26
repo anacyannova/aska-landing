@@ -3,6 +3,21 @@
 @import "../bootstrap-5.3.8/scss/bootstrap";
 @import 'generales';
 
+// Transiciones más largas y con salida suave (menos "agresivas")
+$ease-smooth: cubic-bezier(.22, .61, .36, 1);
+$transition: all .5s $ease-smooth;
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
 /*** RESET ***/
 html {
     scroll-behavior: smooth;
@@ -28,21 +43,14 @@ a {
 }
 /*** CONTAINER ***/
 .container {
-    max-width: $container-max;
-}
-.container {
-    max-width: 1400px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 90px;
-    padding-right: 90px;
+    max-width: 1441px;
+    margin-inline: auto;
+    padding-inline: 90px;
     @media (max-width: 991.98px) {
-        padding-left: 40px;
-        padding-right: 40px;
+        padding-inline: 40px;
     }
     @media (max-width: 575.98px) {
-        padding-left: 20px;
-        padding-right: 20px;
+        padding-inline: 20px;
     }
 }
 
@@ -50,7 +58,7 @@ a {
 .navbar {
     padding: 25px 0;
     background: transparent;
-    transition: $transition;
+    transition: all .35s ease;
     &.scrolled {
         padding: 14px 0;
         background: $color-bg;
@@ -67,16 +75,16 @@ a {
     display: flex;
     align-items: center;
     img {
-        height: 26px;
+        height: 30px;
         width: auto;
         display: block;
-        transition: $transition;
+        transition: all .35s ease;
     }
 }
 .nav-link {
     color: $color-bg;
-    font-size: .9rem;
-    transition: $transition;
+    font-size: 1rem;
+    transition: all .35s ease;
 }
 .nav-link:hover {
     color: $color-bg;
@@ -108,10 +116,16 @@ a {
 
 /*** NAV DESKTOP ***/
 @media (min-width: 992px) {
+    .navbar-nav {
+        gap: 80px;
+    }
+    .navbar .navbar-nav .nav-link {
+        padding-left: 0;
+        padding-right: 0;
+    }
     .navbar.scrolled .nav-link {
         color: $color-dark;
     }
-
 }
 
 /*** NAV MOBILE ***/
@@ -191,7 +205,8 @@ a {
         content: '';
         position: absolute;
         inset: 0;
-        background: linear-gradient(180deg, rgba(0, 0, 0, .3) 0%, rgba(0, 0, 0, .65) 100%);
+        // más suave que antes (.3 → .65) para que el humo se vea como en Figma
+        background: linear-gradient(180deg, rgba(0, 0, 0, .15) 0%, rgba(0, 0, 0, .4) 100%);
         z-index: 0;
     }
     .container {
@@ -199,96 +214,111 @@ a {
         z-index: 1;
     }
 }
-.hero .row {
-    min-height: 100vh;
+.hero-content {
+    padding-top: 250px;
 }
 .hero h1 {
     text-transform: uppercase;
     max-width: 350px;
+    line-height: 1.2;
 }
 
 .hero-logo-card {
-    width: 320px;
-    height: 320px;
-    background-image: url('../img/plastic-banner.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    width: 380px;
+    aspect-ratio: 380 / 371;
+    background: url('../img/plastic-banner.png') center / contain no-repeat;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    padding-top: 34px; // en Figma el bloque queda ~17px bajo el centro
+
     .hero-logo-img {
-        width: 180px;
+        width: 260px;
         height: auto;
         display: block;
         margin: 0 auto;
     }
     .hero-logo-sub {
         font-family: $font-heading;
-        font-size: 36px;
-        font-weight: lighter;
-        margin-bottom: 18px;
+        font-size: 40px;
+        font-weight: 300;
+        line-height: 1;
+        margin: 24px 0 28px;
     }
     .hero-logo-caption {
         display: block;
         font-family: $font-heading;
         font-size: 16px;
-        opacity: .55;
-        letter-spacing: 3%;
+        font-weight: 300; // gana a la regla "body span" de generales
+        opacity: .6;
+        letter-spacing: .03em;
     }
 }
 
 .scroll-top-btn {
     position: fixed;
-    right: 32px;
-    bottom: 32px;
+    right: 92px;
+    bottom: 58px;
     z-index: 999;
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background: rgba(0, 0, 0, .75);
-    border: 1px solid rgba(255,255,255,.25);
-    color: white;
+    background: $color-white;
+    border: 1px solid transparent; // reservado para que no se mueva al aparecer el borde
+    color: $color-dark;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: $transition;
+    transition:
+        border-color .6s $ease-smooth,
+        color .4s $ease-smooth,
+        transform .4s $ease-smooth;
+
+    // Sobre fondo claro: sigue blanco, solo se agrega borde negro (el JS agrega .on-light)
+    &.on-light {
+        border-color: $color-dark;
+    }
     &:hover {
-        background: $color-accent;
+        color: $color-accent;
+        transform: translateY(-3px);
     }
 }
 
 /*** HERO MOBILE***/
 @media (max-width: 991.98px) {
-    .hero .row {
-        min-height: 100vh;
+    .hero {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-    }
-    .hero .col-lg-4 {
-        width: 100%;
         text-align: center;
+        .container {
+            width: 100%;
+        }
+    }
+    .hero-content {
+        padding-top: 0;
     }
     .hero h1 {
-        margin-top: 0;
-        margin-bottom: 30px;
-        margin-left: auto;
-        margin-right: auto;
-        max-width: 350px;
-    }
-    .hero .col-lg-8 {
-        width: 100%;
-        text-align: center;
-        display: flex;
-        justify-content: center;
+        margin: 0 auto 40px;
     }
     .hero-logo-card {
-        margin-left: auto;
-        margin-right: auto;
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        width: min(380px, 85vw);
+    }
+    .scroll-top-btn {
+        right: 24px;
+        bottom: 24px;
     }
 }
 
@@ -397,9 +427,9 @@ a {
     justify-content: center;
     padding: 24px;
     transition:
-        flex .4s ease-in-out,
-        background .3s ease,
-        color .3s ease;
+        flex .8s $ease-smooth,
+        background .6s $ease-smooth,
+        color .6s $ease-smooth;
 
     &-number {
         position: absolute;
@@ -470,6 +500,7 @@ a {
         }
         .procesos-card-content {
             display: block;
+            animation: fadeUp .8s $ease-smooth .2s both; // el texto aparece cuando la tarjeta ya se abrió
         }
         @include media-breakpoint-down(md) {
             flex: none;
@@ -493,7 +524,7 @@ a {
         width: 100%;
         min-height: 120px;
         padding: 36px 24px;
-        transition: min-height .45s ease;
+        transition: min-height .7s $ease-smooth;
         scroll-snap-align: none;
     }
 }
@@ -622,7 +653,7 @@ a {
         padding: 0 40px;
         font-size: 1rem;
         line-height: 1.6;
-        transition: max-height 0.35s ease, padding 0.35s ease;
+        transition: max-height .7s $ease-smooth, padding .7s $ease-smooth;
         p {
             margin-bottom: 20px;
         }
@@ -697,6 +728,21 @@ a {
     min-height: 300px;
     padding: 32px;
 
+    // fade del texto al cambiar de servicio (el JS agrega .is-changing)
+    .servicios-panel-label,
+    .servicios-panel-title,
+    .servicios-panel-desc {
+        transition: opacity .35s ease, transform .35s ease;
+    }
+    &.is-changing {
+        .servicios-panel-label,
+        .servicios-panel-title,
+        .servicios-panel-desc {
+            opacity: 0;
+            transform: translateY(8px);
+        }
+    }
+
     @media (max-width: 991.98px) {
         display: none; // reemplazado por el acordeón en mobile/tablet
     }
@@ -751,7 +797,11 @@ a {
     opacity: .20;
     pointer-events: none;
     z-index: 2;
-    transition: top .5s cubic-bezier(.4,0,.2,1), right .5s cubic-bezier(.4,0,.2,1), width .5s ease;
+    // el logo se desliza junto con las fotos (misma curva que en main.js)
+    transition:
+        top .9s cubic-bezier(.32, .72, 0, 1),
+        right .9s cubic-bezier(.32, .72, 0, 1),
+        width .9s cubic-bezier(.32, .72, 0, 1);
 
     @media (max-width: 767px) { width: 56px; }
 }
@@ -763,11 +813,11 @@ a {
 // Contenedor de tarjetas
 #teamRow {
     display: grid;
+    align-content: start; // evita que las filas se estiren mientras la altura se anima
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
     max-width: 960px;
     margin-inline: auto;
-    transition: all .5s cubic-bezier(.4,0,.2,1);
 
     > [class*="col-"] {
     width: auto;
@@ -894,7 +944,6 @@ a {
     display: flex;
     flex-direction: column;
     cursor: pointer;
-    transition: gap .4s ease;
     .team-image {
         width: 100%;
         aspect-ratio: 1 / 1;
@@ -902,9 +951,6 @@ a {
         background-size: cover;
         background-position: center;
         flex-shrink: 0;
-        transition:
-            width .5s cubic-bezier(.4,0,.2,1),
-            aspect-ratio .5s cubic-bezier(.4,0,.2,1);
     }
     .team-card-text {
         display: flex;
@@ -960,6 +1006,49 @@ a {
     }
 }
 
+/*** EQUIPO: botón volver ***/
+.team-back-btn {
+    position: absolute;
+    top: .35rem;
+    right: 90px; // alineado al margen derecho del container
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 22px;
+    background: transparent;
+    color: $color-white;
+    border: 1px solid rgba($color-white, .6);
+    border-radius: 0;
+    font-family: $font-body;
+    font-size: .875rem;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity .6s $ease-smooth,
+        visibility .6s,
+        background-color .4s $ease-smooth,
+        color .4s $ease-smooth;
+
+    &:hover {
+        background: $color-white;
+        color: $color-dark;
+    }
+
+    @media (max-width: 991.98px) {
+        right: 40px;
+    }
+    @media (max-width: 767px) {
+        display: none; // en mobile el equipo es solo slider
+    }
+}
+.equipo-section.team-active .team-back-btn {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
 /*** CONTACTO ***/
 
 .contacto-info-list {
@@ -971,7 +1060,7 @@ a {
         font-size: 1rem;
         font-weight: 600;
         color: $color-accent;
-        letter-spacing: 1.5%;
+        letter-spacing: .015em;
 
         i {
             font-size: 1.1rem;
