@@ -3,7 +3,6 @@
 @import "../bootstrap-5.3.8/scss/bootstrap";
 @import 'generales';
 
-// Transiciones más largas y con salida suave (menos "agresivas")
 $ease-smooth: cubic-bezier(.22, .61, .36, 1);
 $transition: all .5s $ease-smooth;
 
@@ -154,6 +153,9 @@ a {
         width: 100%;
         border-bottom: 2px solid rgba(255,255,255,.12);
     }
+    .navbar-nav .nav-item-cta {
+        border-bottom: none;
+    }
     .navbar-nav .nav-link {
         color: $color-gray-400;
         padding: 18px 0;
@@ -205,7 +207,6 @@ a {
         content: '';
         position: absolute;
         inset: 0;
-        // más suave que antes (.3 → .65) para que el humo se vea como en Figma
         background: linear-gradient(180deg, rgba(0, 0, 0, .15) 0%, rgba(0, 0, 0, .4) 100%);
         z-index: 0;
     }
@@ -237,7 +238,7 @@ a {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding-top: 34px; // en Figma el bloque queda ~17px bajo el centro
+    padding-top: 34px;
 
     .hero-logo-img {
         width: 260px;
@@ -256,7 +257,7 @@ a {
         display: block;
         font-family: $font-heading;
         font-size: 16px;
-        font-weight: 300; // gana a la regla "body span" de generales
+        font-weight: 300;
         opacity: .6;
         letter-spacing: .03em;
     }
@@ -271,7 +272,7 @@ a {
     height: 40px;
     border-radius: 50%;
     background: $color-white;
-    border: 1px solid transparent; // reservado para que no se mueva al aparecer el borde
+    border: 1px solid transparent;
     color: $color-dark;
     display: flex;
     align-items: center;
@@ -281,7 +282,6 @@ a {
         color .4s $ease-smooth,
         transform .4s $ease-smooth;
 
-    // Sobre fondo claro: sigue blanco, solo se agrega borde negro (el JS agrega .on-light)
     &.on-light {
         border-color: $color-dark;
     }
@@ -299,6 +299,7 @@ a {
         justify-content: center;
         align-items: center;
         text-align: center;
+        min-height: 100svh;
         .container {
             width: 100%;
         }
@@ -407,7 +408,7 @@ a {
     gap: 12px;
     min-height: clamp(220px, 40vw, 380px);
 
-    @include media-breakpoint-down(md) {
+    @include media-breakpoint-down(lg) {
         flex-direction: column;
         min-height: auto;
         gap: 9px;
@@ -441,7 +442,7 @@ a {
         letter-spacing: .5px;
         z-index: 2;
 
-        @include media-breakpoint-down(md) {
+        @include media-breakpoint-down(lg) {
             font-size: 1rem;
             top: 14px;
             left: 16px;
@@ -457,7 +458,7 @@ a {
         letter-spacing: 1px;
         white-space: nowrap;
 
-        @include media-breakpoint-down(md) {
+        @include media-breakpoint-down(lg) {
             display: none;
         }
     }
@@ -470,7 +471,7 @@ a {
             font-size: 1.875rem;
             margin-bottom: 12px;
 
-            @include media-breakpoint-down(md) {
+            @include media-breakpoint-down(lg) {
                 font-size: 1.4rem;
             }
         }
@@ -481,7 +482,7 @@ a {
             opacity: .85;
             margin: 0;
 
-            @include media-breakpoint-down(md) {
+            @include media-breakpoint-down(lg) {
                 font-size: 1rem;
             }
         }
@@ -500,9 +501,9 @@ a {
         }
         .procesos-card-content {
             display: block;
-            animation: fadeUp .8s $ease-smooth .2s both; // el texto aparece cuando la tarjeta ya se abrió
+            animation: fadeUp .8s $ease-smooth .2s both;
         }
-        @include media-breakpoint-down(md) {
+        @include media-breakpoint-down(lg) {
             flex: none;
             width: 100%;
             min-height: 220px;
@@ -518,14 +519,25 @@ a {
         }
     }
 
-    /* NOSOTROS Tarjetas mobile */
-    @include media-breakpoint-down(md) {
+    @include media-breakpoint-down(lg) {
         flex: none;
         width: 100%;
         min-height: 120px;
         padding: 36px 24px;
         transition: min-height .7s $ease-smooth;
         scroll-snap-align: none;
+
+        .procesos-card-label {
+            display: block;
+            writing-mode: horizontal-tb;
+            transform: none;
+            font-size: 1.125rem;
+            padding-left: 50px;
+        }
+
+        &.active .procesos-card-label {
+            display: none;
+        }
     }
 }
 
@@ -556,13 +568,12 @@ a {
     }
 }
 .project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     aspect-ratio: 1 / 1;
     background: $color-gray-300;
-    flex: 0 0 calc(25% - 18px);
-    scroll-snap-align: start;
-    @media (max-width: 767px) {
-        flex: 0 0 70%;
-    }
+    display: block;
 }
 .proyecto-scrollbar-wrap {
     margin-top: 2.87rem;
@@ -585,9 +596,20 @@ a {
         }
     }
 }
+
+@media (max-width: 767px) {
+    .proyecto-destacado {
+        background-position: calc(50% - 150px) center;
+    }
+}
+
 /*** SERVICIOS ***/
 #servicios {
     margin: 150px 0;
+
+    @media (max-width: 991.98px) {
+        margin: 60px 0;
+    }
 }
 
 .servicios-wrapper {
@@ -631,6 +653,11 @@ a {
         align-items: center;
         gap: 16px;
         padding: 30px 40px;
+
+        @media (max-width: 575.98px) {
+            padding: 24px 20px;
+            gap: 12px;
+        }
     }
     .servicios-item-number {
         font-size: 0.875rem;
@@ -660,7 +687,6 @@ a {
         @media (min-width: 992px) {
             display: none;
         }
-        /* Botón "Contacto" dentro del acordeón mobile */
         @media (max-width: 991.98px) {
             .btn-outline-panel {
                 color: $color-white;
@@ -678,17 +704,22 @@ a {
                 }
             }
         }
+        @media (max-width: 575.98px) {
+            padding: 0 20px;
+        }
     }
 
-    /* Abre el acordeón cuando el item está activo */
     &.active {
         .servicios-item-content {
             max-height: 600px;
             padding: 0 40px 30px;
+
+            @media (max-width: 575.98px) {
+                padding: 0 20px 24px;
+            }
         }
     }
 
-    /* ---- DESKTOP (>=992px) ---- */
     @media (min-width: 992px) {
         &:hover:not(.active) {
             background: $color-gray-100;
@@ -706,7 +737,6 @@ a {
         }
     }
 
-    /* ---- MOBILE / TABLET (<=991.98px) ---- */
     @media (max-width: 991.98px) {
         &.active {
             background: $color-accent;
@@ -728,7 +758,6 @@ a {
     min-height: 300px;
     padding: 32px;
 
-    // fade del texto al cambiar de servicio (el JS agrega .is-changing)
     .servicios-panel-label,
     .servicios-panel-title,
     .servicios-panel-desc {
@@ -744,7 +773,7 @@ a {
     }
 
     @media (max-width: 991.98px) {
-        display: none; // reemplazado por el acordeón en mobile/tablet
+        display: none;
     }
 
     &-label {
@@ -797,7 +826,6 @@ a {
     opacity: .20;
     pointer-events: none;
     z-index: 2;
-    // el logo se desliza junto con las fotos (misma curva que en main.js)
     transition:
         top .9s cubic-bezier(.32, .72, 0, 1),
         right .9s cubic-bezier(.32, .72, 0, 1),
@@ -807,13 +835,19 @@ a {
 }
 .equipo-section.team-active .equipo-logo {
     top: 30%;
-    right: calc(100% - 180px - 1rem); // pegado al borde derecho de la foto grande (260px = ancho activo de .team-image)
+    right: calc(100% - 180px - 1rem);
     width: 100px;
+
+    @media (max-width: 991.98px) {
+        top: 48%;
+        right: 8%;
+        width: 56px;
+    }
 }
 // Contenedor de tarjetas
 #teamRow {
     display: grid;
-    align-content: start; // evita que las filas se estiren mientras la altura se anima
+    align-content: start;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
     max-width: 960px;
@@ -826,7 +860,11 @@ a {
     padding: 0;
     }
 
-    // Estado activo
+    @media (max-width: 991.98px) and (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 100%;
+    }
+
     &.is-active {
         display: flex;
         flex-wrap: wrap;
@@ -838,7 +876,6 @@ a {
         padding: 0;
     }
 
-    // Tarjeta activa
     > [class*="col-"]:nth-child(1) {
         flex: 0 0 100%;
 
@@ -904,7 +941,6 @@ a {
         }
     }
 
-    // Miniaturas
         > [class*="col-"]:nth-child(2) {
             margin-left: calc(320px + 2.5rem + 1.5rem);
         }
@@ -968,41 +1004,51 @@ a {
     }
 }
 
-
 @media (max-width: 767px) {
     #teamRow,
     #teamRow.is-active {
-        display: flex;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        gap: 1rem;
-        padding-bottom: .5rem;
-
-    // oculta la scrollbar (opcional, solo estético)
-    scrollbar-width: none;
-    &::-webkit-scrollbar { display: none; }
-
-    > [class*="col-"] {
-        flex: 0 0 78%;
-        max-width: 78%;
-        scroll-snap-align: center;
-        margin-top: 0 !important;
-        margin-left: 0 !important;
-    }
-
-    .team-card {
+        display: flex !important;
         flex-direction: column !important;
-        align-items: stretch !important;
+        flex-wrap: nowrap !important;
+        gap: 2rem !important;
+        overflow: visible !important;
+        width: 100% !important;
+        margin: 0 !important;
+
+        > [class*="col-"] {
+            display: block !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            flex: 0 0 auto !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            float: none !important;
+        }
+
+        .team-card {
+            flex-direction: column !important;
+            align-items: stretch !important;
+        }
+
+        .team-image {
+            width: 100% !important;
+            flex: unset !important;
+            aspect-ratio: 1/1 !important;
+            margin-left: 0 !important;
+        }
+
+        .team-card-text {
+            flex-direction: row !important;
+            margin-top: .75rem !important;
+        }
+
+        .desc, .meta { display: none !important; }
+        .name-bar { display: block !important; }
     }
 
-    .team-image {
-        width: 100% !important;
-        flex: unset !important;
-        aspect-ratio: 1/1 !important;
-    }
-    .desc, .meta { display: none !important; }
+    /* El logo decorativo del fondo se oculta para no estorbar */
+    .equipo-logo {
+        display: none !important;
     }
 }
 
@@ -1010,7 +1056,7 @@ a {
 .team-back-btn {
     position: absolute;
     top: .35rem;
-    right: 90px; // alineado al margen derecho del container
+    right: 90px;
     z-index: 3;
     display: inline-flex;
     align-items: center;
@@ -1040,7 +1086,7 @@ a {
         right: 40px;
     }
     @media (max-width: 767px) {
-        display: none; // en mobile el equipo es solo slider
+        display: none;
     }
 }
 .equipo-section.team-active .team-back-btn {
@@ -1110,7 +1156,6 @@ a {
     background: transparent;
 }
 
-// overrides dentro de la tarjeta oscura de contacto
 .contacto-form-card {
     .form-control,
     .form-select-custom {
@@ -1129,4 +1174,10 @@ a {
 }
 textarea.form-control {
     resize: none;
+}
+
+@media (max-width: 575.98px) {
+    .contacto-form-card {
+        padding: 32px 24px;
+    }
 }

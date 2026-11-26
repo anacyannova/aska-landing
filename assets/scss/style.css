@@ -12186,6 +12186,9 @@ a {
     width: 100%;
     border-bottom: 2px solid rgba(255, 255, 255, 0.12);
   }
+  .navbar-nav .nav-item-cta {
+    border-bottom: none;
+  }
   .navbar-nav .nav-link {
     color: #a5a5a5;
     padding: 18px 0;
@@ -12325,6 +12328,7 @@ a {
     justify-content: center;
     align-items: center;
     text-align: center;
+    min-height: 100svh;
   }
   .hero .container {
     width: 100%;
@@ -12436,7 +12440,7 @@ a {
   gap: 12px;
   min-height: clamp(220px, 40vw, 380px);
 }
-@media (max-width: 767.98px) {
+@media (max-width: 991.98px) {
   .procesos-track {
     flex-direction: column;
     min-height: auto;
@@ -12468,7 +12472,7 @@ a {
   letter-spacing: 0.5px;
   z-index: 2;
 }
-@media (max-width: 767.98px) {
+@media (max-width: 991.98px) {
   .procesos-card-number {
     font-size: 1rem;
     top: 14px;
@@ -12484,7 +12488,7 @@ a {
   letter-spacing: 1px;
   white-space: nowrap;
 }
-@media (max-width: 767.98px) {
+@media (max-width: 991.98px) {
   .procesos-card-label {
     display: none;
   }
@@ -12498,7 +12502,7 @@ a {
   font-size: 1.875rem;
   margin-bottom: 12px;
 }
-@media (max-width: 767.98px) {
+@media (max-width: 991.98px) {
   .procesos-card-content h4, .procesos-card-content .h4 {
     font-size: 1.4rem;
   }
@@ -12510,7 +12514,7 @@ a {
   opacity: 0.85;
   margin: 0;
 }
-@media (max-width: 767.98px) {
+@media (max-width: 991.98px) {
   .procesos-card-content p {
     font-size: 1rem;
   }
@@ -12530,7 +12534,7 @@ a {
   display: block;
   animation: fadeUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.2s both;
 }
-@media (max-width: 767.98px) {
+@media (max-width: 991.98px) {
   .procesos-card.active {
     flex: none;
     width: 100%;
@@ -12546,10 +12550,7 @@ a {
     display: block;
   }
 }
-.procesos-card {
-  /* NOSOTROS Tarjetas mobile */
-}
-@media (max-width: 767.98px) {
+@media (max-width: 991.98px) {
   .procesos-card {
     flex: none;
     width: 100%;
@@ -12557,6 +12558,16 @@ a {
     padding: 36px 24px;
     transition: min-height 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
     scroll-snap-align: none;
+  }
+  .procesos-card .procesos-card-label {
+    display: block;
+    writing-mode: horizontal-tb;
+    transform: none;
+    font-size: 1.125rem;
+    padding-left: 50px;
+  }
+  .procesos-card.active .procesos-card-label {
+    display: none;
   }
 }
 
@@ -12587,15 +12598,13 @@ a {
 }
 
 .project-image {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
   aspect-ratio: 1/1;
   background: #d7d7d7;
-  flex: 0 0 calc(25% - 18px);
-  scroll-snap-align: start;
-}
-@media (max-width: 767px) {
-  .project-image {
-    flex: 0 0 70%;
-  }
+  display: block;
 }
 
 .proyecto-scrollbar-wrap {
@@ -12620,9 +12629,19 @@ a {
   cursor: grabbing;
 }
 
+@media (max-width: 767px) {
+  .proyecto-destacado {
+    background-position: calc(50% - 150px) center;
+  }
+}
 /*** SERVICIOS ***/
 #servicios {
   margin: 150px 0;
+}
+@media (max-width: 991.98px) {
+  #servicios {
+    margin: 60px 0;
+  }
 }
 
 .servicios-wrapper {
@@ -12672,6 +12691,12 @@ a {
   gap: 16px;
   padding: 30px 40px;
 }
+@media (max-width: 575.98px) {
+  .servicios-item-header {
+    padding: 24px 20px;
+    gap: 12px;
+  }
+}
 .servicios-item .servicios-item-number {
   font-size: 0.875rem;
   font-family: "Geist", sans-serif;
@@ -12703,9 +12728,6 @@ a {
     display: none;
   }
 }
-.servicios-item-content {
-  /* Botón "Contacto" dentro del acordeón mobile */
-}
 @media (max-width: 991.98px) {
   .servicios-item-content .btn-outline-panel {
     color: #ffffff;
@@ -12722,15 +12744,19 @@ a {
     background: rgba(255, 255, 255, 0.1);
   }
 }
-.servicios-item {
-  /* Abre el acordeón cuando el item está activo */
+@media (max-width: 575.98px) {
+  .servicios-item-content {
+    padding: 0 20px;
+  }
 }
 .servicios-item.active .servicios-item-content {
   max-height: 600px;
   padding: 0 40px 30px;
 }
-.servicios-item {
-  /* ---- DESKTOP (>=992px) ---- */
+@media (max-width: 575.98px) {
+  .servicios-item.active .servicios-item-content {
+    padding: 0 20px 24px;
+  }
 }
 @media (min-width: 992px) {
   .servicios-item:hover:not(.active) {
@@ -12745,9 +12771,6 @@ a {
     opacity: 1;
     transform: none;
   }
-}
-.servicios-item {
-  /* ---- MOBILE / TABLET (<=991.98px) ---- */
 }
 @media (max-width: 991.98px) {
   .servicios-item.active {
@@ -12865,6 +12888,13 @@ a {
   right: calc(100% - 180px - 1rem);
   width: 100px;
 }
+@media (max-width: 991.98px) {
+  .equipo-section.team-active .equipo-logo {
+    top: 48%;
+    right: 8%;
+    width: 56px;
+  }
+}
 
 #teamRow {
   display: grid;
@@ -12879,6 +12909,12 @@ a {
   max-width: none;
   flex: unset;
   padding: 0;
+}
+@media (max-width: 991.98px) and (min-width: 768px) {
+  #teamRow {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 100%;
+  }
 }
 #teamRow.is-active {
   display: flex;
@@ -13023,26 +13059,23 @@ a {
 @media (max-width: 767px) {
   #teamRow,
   #teamRow.is-active {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    gap: 1rem;
-    padding-bottom: 0.5rem;
-    scrollbar-width: none;
-  }
-  #teamRow::-webkit-scrollbar,
-  #teamRow.is-active::-webkit-scrollbar {
-    display: none;
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    gap: 2rem !important;
+    overflow: visible !important;
+    width: 100% !important;
+    margin: 0 !important;
   }
   #teamRow > [class*=col-],
   #teamRow.is-active > [class*=col-] {
-    flex: 0 0 78%;
-    max-width: 78%;
-    scroll-snap-align: center;
-    margin-top: 0 !important;
-    margin-left: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    float: none !important;
   }
   #teamRow .team-card,
   #teamRow.is-active .team-card {
@@ -13054,10 +13087,24 @@ a {
     width: 100% !important;
     flex: unset !important;
     aspect-ratio: 1/1 !important;
+    margin-left: 0 !important;
+  }
+  #teamRow .team-card-text,
+  #teamRow.is-active .team-card-text {
+    flex-direction: row !important;
+    margin-top: 0.75rem !important;
   }
   #teamRow .desc, #teamRow .meta,
   #teamRow.is-active .desc,
   #teamRow.is-active .meta {
+    display: none !important;
+  }
+  #teamRow .name-bar,
+  #teamRow.is-active .name-bar {
+    display: block !important;
+  }
+  /* El logo decorativo del fondo se oculta para no estorbar */
+  .equipo-logo {
     display: none !important;
   }
 }
@@ -13183,4 +13230,10 @@ a {
 
 textarea.form-control {
   resize: none;
+}
+
+@media (max-width: 575.98px) {
+  .contacto-form-card {
+    padding: 32px 24px;
+  }
 }/*# sourceMappingURL=style.css.map */

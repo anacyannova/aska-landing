@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* ==========================
         SCROLL SUAVE (con easing)
-        El scroll nativo "smooth" es lineal y brusco en distancias largas.
     ========================== */
     const easeInOutCubic = t => (t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
     let scrollRaf = null;
@@ -35,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const startTime = performance.now();
 
         stopSmoothScroll();
-        root.style.scrollBehavior = 'auto'; // evita que el CSS pelee con la animación
+        root.style.scrollBehavior = 'auto';
 
         const step = (now) => {
             const t = Math.min((now - startTime) / duration, 1);
@@ -51,12 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollRaf = requestAnimationFrame(step);
     };
 
-    // Si la persona toma el control (rueda, touch, teclado), se cancela la animación
     ['wheel', 'touchstart', 'keydown'].forEach(evt =>
         window.addEventListener(evt, stopSmoothScroll, { passive: true })
     );
 
-    // Links internos (#nosotros, #servicios, etc.)
     document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener('click', (e) => {
             const id = link.getAttribute('href');
@@ -71,7 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
             smoothScrollTo(target.getBoundingClientRect().top + window.scrollY - offset);
             history.pushState(null, '', id);
 
-            // Cierra el menú mobile si está abierto
             const menu = document.getElementById('menu');
             if (menu && menu.classList.contains('show') && window.bootstrap) {
                 bootstrap.Collapse.getOrCreateInstance(menu).hide();
@@ -92,14 +88,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let navbarScrolled = null;
 
-    // Precarga para que el cambio de logo no parpadee
     [LOGO_LIGHT, LOGO_DARK].forEach(src => { const img = new Image(); img.src = src; });
 
     const updateNavbar = () => {
         if (!navbar || !hero || !navbarLogo) return;
 
         const scrolled = window.scrollY > hero.offsetHeight - navbar.offsetHeight;
-        if (scrolled === navbarScrolled) return; // solo actúa cuando cambia el estado
+        if (scrolled === navbarScrolled) return;
 
         navbarScrolled = scrolled;
         navbar.classList.toggle('scrolled', scrolled);
@@ -109,13 +104,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* ==========================
         BOTÓN "VOLVER ARRIBA"
-        - click: scroll suave al inicio
-        - siempre es blanco; sobre fondo claro se le agrega un borde negro
-          (el JS agrega la clase .on-light según el fondo que tiene detrás)
     ========================== */
     const scrollTopBtn = document.getElementById('scrollTopBtn');
 
-    // Secciones con fondo en imagen (no se puede leer su color): se marcan como oscuras
     const DARK_SECTIONS = '.hero, .proyecto-destacado, .equipo-section';
 
     const parseColor = (str) => {
@@ -136,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const color = parseColor(getComputedStyle(el).backgroundColor);
             if (color && color.a > 0.5) return isDarkColor(color);
         }
-        return false; // por defecto, fondo claro ($color-bg)
+        return false;
     };
 
     const updateScrollTopTheme = () => {
@@ -173,14 +164,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================
-        PROCESO: se expande al hacer hover
-        (con una pequeña espera para que no "tiemble" al pasar el mouse rápido)
+        PROCESO: se expande al hacer hover (desktop) / click (touch)
     ========================== */
     const procesosTrack = document.getElementById('procesosTrack');
 
     if (procesosTrack) {
         const cards = procesosTrack.querySelectorAll('.procesos-card');
-        const defaultIndex = 1; // "02 Proponer" queda activo por defecto
+        const defaultIndex = 1;
         const hasHover = window.matchMedia('(hover: hover)').matches;
 
         const activate = (card) => {
@@ -220,7 +210,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* ==========================
         SERVICIOS: lista + panel de detalle
-        (el texto del panel hace fade al cambiar)
     ========================== */
     const serviciosList = document.getElementById('serviciosList');
 
@@ -281,9 +270,9 @@ document.addEventListener('DOMContentLoaded', () => {
         new Swiper(proyectoSwiperEl, {
             slidesPerView: 4,
             spaceBetween: 24,
-            speed: 900,            // transición entre slides más lenta y fluida
+            speed: 900,
             grabCursor: true,
-            resistanceRatio: 0.6,  // el rebote en los bordes es más suave
+            resistanceRatio: 0.6,
             scrollbar: {
                 el: '.proyecto-scrollbar',
                 draggable: true,
@@ -300,13 +289,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* ==========================
         EQUIPO
-        - Click en un integrante: pasa a ser la tarjeta grande
-        - Botón "Ver todo el equipo" (o Esc, o click en la tarjeta grande):
-          vuelve a la vista por defecto con el orden original
-        - Nada desaparece: cada foto y cada texto se desliza desde su posición
-          anterior hasta la nueva (técnica FLIP). Las fotos se recortan mientras
-          cambian de proporción, así no se deforman. La altura de la sección
-          también se anima para que el contenido de abajo no salte.
     ========================== */
     const row = document.getElementById('teamRow');
     const section = document.querySelector('.equipo-section');
@@ -316,11 +298,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const isMobile = () => window.innerWidth <= 767;
         const logo = section.querySelector('.equipo-logo');
 
-        const EASE_FLUID = 'cubic-bezier(.32, .72, 0, 1)'; // arranca rápido y aterriza muy suave
+        const EASE_FLUID = 'cubic-bezier(.32, .72, 0, 1)';
         const DURATION = 900;
         let isAnimating = false;
 
-        // Cada integrante guarda su orden original
         [...row.children].forEach((col, i) => { col.dataset.order = i; });
 
         const reorder = (firstCol) => {
@@ -329,8 +310,6 @@ document.addEventListener('DOMContentLoaded', () => {
             list.forEach(c => row.appendChild(c));
         };
 
-        // Posición y tamaño en coordenadas de página
-        // (así no se desfasa si la persona hace scroll durante la animación)
         const pageRect = (el) => {
             const r = el.getBoundingClientRect();
             return {
@@ -341,9 +320,6 @@ document.addEventListener('DOMContentLoaded', () => {
             };
         };
 
-        // Foto: se traslada y escala desde su caja anterior hasta la nueva.
-        // El escalado es uniforme y lo que sobra se recorta (clip-path),
-        // por eso la imagen nunca se estira aunque cambie de proporción.
         const flipImage = (el, from) => {
             const to = pageRect(el);
             if (!from || !to.width || !to.height) return null;
@@ -369,7 +345,6 @@ document.addEventListener('DOMContentLoaded', () => {
             );
         };
 
-        // Texto: solo se desliza desde su posición anterior
         const flipText = (el, from) => {
             const to = pageRect(el);
             if (!from) return null;
@@ -390,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const isShown = (el) => el.offsetParent !== null;
 
         const changeLayout = async (mutate) => {
-            if (isAnimating) return; // ignora clicks mientras se está animando
+            if (isAnimating) return;
 
             if (prefersReducedMotion || !row.animate) {
                 mutate();
@@ -403,13 +378,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const images = [...row.querySelectorAll('.team-image')];
                 const texts = [...row.querySelectorAll('.team-card-text')];
 
-                // 1) Se guarda dónde está cada elemento antes del cambio
                 const imageBefore = new Map(images.map(el => [el, pageRect(el)]));
                 const textBefore = new Map(texts.map(el => [el, pageRect(el)]));
                 const heightBefore = row.offsetHeight;
 
-                // La descripción extra (desc/meta) baja de opacidad antes del cambio,
-                // porque en la vista por defecto no existe y se cortaría de golpe
                 const oldExtras = [...row.querySelectorAll('.desc, .meta')].filter(isShown);
                 const fadeOuts = oldExtras.map(el => el.animate(
                     [{ opacity: 1 }, { opacity: 0 }],
@@ -417,18 +389,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 ));
                 if (fadeOuts.length) await Promise.all(fadeOuts.map(a => a.finished));
 
-                // 2) Cambio de layout
                 mutate();
                 fadeOuts.forEach(a => a.cancel());
                 const heightAfter = row.offsetHeight;
 
-                // 3) Cada elemento se desliza desde donde estaba hasta donde quedó
                 const animations = [];
 
                 images.forEach(el => animations.push(flipImage(el, imageBefore.get(el))));
                 texts.forEach(el => animations.push(flipText(el, textBefore.get(el))));
 
-                // La descripción nueva aparece con un fade suave, ya cuando el movimiento va avanzado
                 row.querySelectorAll('.desc, .meta').forEach(el => {
                     if (!isShown(el)) return;
                     animations.push(el.animate(
@@ -437,7 +406,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     ));
                 });
 
-                // La sección crece/encoge gradualmente en vez de saltar
                 if (heightBefore !== heightAfter) {
                     animations.push(row.animate(
                         [{ height: `${heightBefore}px` }, { height: `${heightAfter}px` }],
@@ -447,7 +415,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 await Promise.all(animations.filter(Boolean).map(a => a.finished));
             } catch (err) {
-                // Si algo interrumpe las animaciones, el layout igual queda correcto
             } finally {
                 isAnimating = false;
             }
@@ -460,14 +427,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const closeTeam = () => changeLayout(() => {
-            reorder(null); // orden original
+            reorder(null);
             row.classList.remove('is-active');
             section.classList.remove('team-active');
         });
 
         row.querySelectorAll('.team-card').forEach(card => {
             card.addEventListener('click', () => {
-                if (isMobile()) return; // en mobile es solo slider, no expande
+                if (isMobile()) return;
 
                 const col = card.closest('[class*="col-"]');
                 const isActiveCard = row.classList.contains('is-active') && row.firstElementChild === col;
@@ -486,6 +453,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && row.classList.contains('is-active')) closeTeam();
+        });
+
+        let wasMobile = isMobile();
+        window.addEventListener('resize', () => {
+            const nowMobile = isMobile();
+            if (nowMobile !== wasMobile) {
+                wasMobile = nowMobile;
+                if (nowMobile && row.classList.contains('is-active')) {
+                    closeTeam();
+                }
+            }
         });
     }
 
